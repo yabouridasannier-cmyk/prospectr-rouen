@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f172a">
+  <title>ProspectR — Prospection Rouen 2026</title>
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Splash -->
+    <div id="splash" class="splash">
+      <div class="splash-content">
+        <div class="splash-icon"><i class="fas fa-route"></i></div>
+        <h1>ProspectR</h1>
+        <p>Prospection Rouen 2026</p>
+        <div class="splash-loader"><div class="loader-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-app" class="hidden">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button id="btn-back" class="btn-icon hidden"><i class="fas fa-arrow-left"></i></button>
+          <h1 id="header-title">ProspectR</h1>
+        </div>
+        <div class="header-right">
+          <span id="header-stats" class="header-stats"></span>
+        </div>
+      </header>
+
+      <!-- Dashboard View -->
+      <div id="view-dashboard" class="view">
+        <div class="dashboard-hero">
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-number" id="total-prospects">0</span>
+              <span class="stat-label">Prospects</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="total-sessions">0</span>
+              <span class="stat-label">Sessions</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="total-done">0</span>
+              <span class="stat-label">Faits</span>
+            </div>
+          </div>
+        </div>
+        <div class="section-title">
+          <h2>Sessions de prospection</h2>
+          <p>Organisées par zone géographique</p>
+        </div>
+        <div id="sessions-list" class="sessions-list"></div>
+      </div>
+
+      <!-- Session Detail View -->
+      <div id="view-session" class="view hidden">
+        <div class="session-header-card" id="session-header-card">
+          <div class="session-zone" id="session-zone"></div>
+          <div class="session-meta" id="session-meta"></div>
+          <a id="session-map-link" class="btn-maps" target="_blank">
+            <i class="fas fa-route"></i> Lancer l'itinéraire
+          </a>
+        </div>
+        <div id="prospects-list" class="prospects-list"></div>
+      </div>
+
+      <!-- Prospect Detail View -->
+      <div id="view-prospect" class="view hidden">
+        <div id="prospect-detail" class="prospect-detail"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

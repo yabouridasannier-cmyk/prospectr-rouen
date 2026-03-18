@@ -2,33 +2,110 @@
   "sessions": [
     {
       "id": 1,
-      "zone": "Nord (Houlme/Houppeville/Isneauville)",
+      "zone": "Saint-Étienne-du-Rouvray / Sotteville-lès-Rouen / Le Petit-Quevilly",
       "villes": [
-        "Canteleu",
-        "Déville-lès-Rouen",
-        "Maromme",
-        "Le Houlme"
+        "Saint-Étienne-du-Rouvray",
+        "Sotteville-lès-Rouen",
+        "Le Petit-Quevilly"
       ],
-      "routeKm": 27.5,
+      "routeKm": 12.2,
       "prospects": [
         {
-          "nom": "Le Moulin de Canteleu",
+          "nom": "AC2F Normandie",
+          "niche": "BTP / Construction",
+          "site": "ac2f-normandie.fr",
+          "ville": "Saint-Étienne-du-Rouvray",
+          "ca": "1M-5M",
+          "effectif": "11-50",
+          "secteur": "Construction",
+          "description": "Creee en 2005, AC2F Normandie est specialisee dans les travaux dinstallation electrique en courant fort et courant faible. En 2016, vient la creation dOMNIS System specialise dans les systemes de secu",
+          "linkedin": "https://www.linkedin.com/company/ac2f-normandie",
+          "score": 29,
+          "address": null
+        },
+        {
+          "nom": "RAV EXP",
+          "niche": "BTP / Construction",
+          "site": "ravexp.fr",
+          "ville": "Saint-Étienne-du-Rouvray",
+          "ca": "1M-5M",
+          "effectif": "11-50",
+          "secteur": "Construction",
+          "description": "RAV EXP Specialise dans les revetements de facades ISOLATION THERMIQUE PAR L'EXTERIEUR (ITE) RAVALEMENT PAREMENT BRIQUES BARDAGES PEINTURE",
+          "linkedin": "https://www.linkedin.com/company/ravexp",
+          "score": 29,
+          "address": null
+        },
+        {
+          "nom": "GODEFROY FILS",
+          "niche": "BTP / Construction",
+          "site": "godefroy-fils.fr",
+          "ville": "Sotteville-lès-Rouen",
+          "ca": "1M-5M",
+          "effectif": "11-50",
+          "secteur": "Construction",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/godefroy-fils",
+          "score": 28,
+          "address": null
+        },
+        {
+          "nom": "NORMANDY CLIM",
+          "niche": "BTP / Construction",
+          "site": "normandy-clim.com",
+          "ville": "Sotteville-lès-Rouen",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Construction",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/normandy-clim",
+          "score": 18,
+          "address": null
+        },
+        {
+          "nom": "SPHA",
+          "niche": "BTP / Construction",
+          "site": "spha.fr",
+          "ville": "Sotteville-lès-Rouen",
+          "ca": "10M-25M",
+          "effectif": "51-200",
+          "secteur": "Construction",
+          "description": "Reactivite, Professionnalisme et qualite des prestations sont les maitres mots de notre activite. Implantes a Sotteville-Les-Rouen depuis 2008, nous assurons la realisation dinterventions de depannage",
+          "linkedin": "https://www.linkedin.com/company/spha",
+          "score": 42,
+          "address": null
+        },
+        {
+          "nom": "Trianon Transatlantique",
           "niche": "Restauration",
-          "site": "lemoulindecanteleu.eatbu.com",
-          "ville": "Canteleu",
+          "site": "trianontransatlantique.com",
+          "ville": "Sotteville-lès-Rouen",
           "ca": "0-500K",
           "effectif": "1-10",
           "secteur": "Restaurants and Other Eating Places",
           "description": "",
-          "linkedin": "https://www.linkedin.com/company/le-moulin-de-canteleu",
-          "score": 10,
+          "linkedin": "https://www.linkedin.com/company/trianon-transatlantique",
+          "score": 12,
           "address": null
         },
         {
-          "nom": "RESTAURANT CHEZ RENE",
+          "nom": "La Petite Adresserouen",
           "niche": "Restauration",
-          "site": "restaurant-chez-rene.fr",
-          "ville": "Canteleu",
+          "site": "lapetiteadresserouen.fr",
+          "ville": "Sotteville-lès-Rouen",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/la-petite-adresserouen",
+          "score": 12,
+          "address": null
+        },
+        {
+          "nom": "MAMA'S Steakhouse",
+          "niche": "Restauration",
+          "site": "mamasteakhouse.com",
+          "ville": "Sotteville-lès-Rouen",
           "ca": "0-500K",
           "effectif": "1-10",
           "secteur": "Full-Service Restaurants",
@@ -38,409 +115,126 @@
           "address": null
         },
         {
-          "nom": "La société Avenir Iso est agréée Qualibat RGE pour vos travaux d'isolation thermique.",
+          "nom": "GRANULYS",
           "niche": "BTP / Construction",
-          "site": "avenir-iso.fr",
-          "ville": "Déville-lès-Rouen",
+          "site": "granulys.fr",
+          "ville": "Le Petit-Quevilly",
           "ca": "500K-1M",
           "effectif": "1-10",
           "secteur": "Construction",
-          "description": "L'entreprise Avenir ISO propose de nombreux services aux particuliers : isolation thermique (exterieur et combles), pose de menuiseries et ravalement. L'isolation thermique par l'exterieur permet dapp",
-          "linkedin": "https://www.linkedin.com/company/avenir-iso",
-          "score": 19,
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/granulys",
+          "score": 18,
           "address": null
         },
         {
-          "nom": "TECTUM by A. Savary",
-          "niche": "BTP / Construction",
-          "site": "tectum-couverture.com",
-          "ville": "Déville-lès-Rouen",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Building Finishing Contractors",
-          "description": "Tectum by AS est specialisee dans tous les travaux de couverture, zinguerie, bardage, etancheite, isolation de toiture et pose de fenetres de toit type Velux et puits de lumiere, en neuf comme en reno",
-          "linkedin": "https://www.linkedin.com/company/tectum-by-a-savary",
-          "score": 19,
-          "address": null
-        },
-        {
-          "nom": "La Cuisine De Caroline",
+          "nom": "LES WRAPETTES",
           "niche": "Restauration",
-          "site": "lacuisinedecaroline.com",
-          "ville": "Déville-lès-Rouen",
+          "site": "leswrapettes.com",
+          "ville": "Le Petit-Quevilly",
           "ca": "0-500K",
           "effectif": "1-10",
           "secteur": "Restaurants and Other Eating Places",
           "description": "",
-          "linkedin": "https://www.linkedin.com/company/la-cuisine-de-caroline",
+          "linkedin": "https://www.linkedin.com/company/les-wrapettes",
           "score": 12,
-          "address": null
-        },
-        {
-          "nom": "KARAÏB FAMILY traiteur",
-          "niche": "Restauration",
-          "site": "karaib-family-traiteur.eatbu.com",
-          "ville": "Maromme",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/kara%c3%afb-family-traiteur",
-          "score": 10,
-          "address": null
-        },
-        {
-          "nom": "SASU DURAND FILS",
-          "niche": "BTP / Construction",
-          "site": "durand-fils.com",
-          "ville": "Le Houlme",
-          "ca": "10M-25M",
-          "effectif": "51-200",
-          "secteur": "Construction",
-          "description": "Durand Fils, entreprise generaliste du batiment, situee en SeineMaritime, se deplace pour tous vos travaux de charpente, couverture, bardage, isolation, agrandissement, et renovation de maison dans la",
-          "linkedin": "https://www.linkedin.com/company/sasu-durand-fils",
-          "score": 42,
-          "address": null
-        },
-        {
-          "nom": "SARL GRANITS MATERIAUX",
-          "niche": "BTP / Construction",
-          "site": "granits-materiaux.fr",
-          "ville": "Le Houlme",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/sarl-granits-materiaux",
-          "score": 28,
           "address": null
         }
       ]
     },
     {
       "id": 2,
-      "zone": "Déville/Canteleu/Maromme",
+      "zone": "Le Petit-Quevilly / Le Grand-Quevilly / Rouen",
       "villes": [
-        "Saint-Jean-du-Cardonnay",
-        "La Vaupaliere",
-        "Houppeville"
+        "Le Petit-Quevilly",
+        "Le Grand-Quevilly",
+        "Rouen"
       ],
-      "routeKm": 27.5,
+      "routeKm": 21,
       "prospects": [
         {
-          "nom": "Normandie Rénovation",
-          "niche": "BTP / Construction",
-          "site": "normandie-renovation.com",
-          "ville": "Saint-Jean-du-Cardonnay",
-          "ca": "10M-25M",
-          "effectif": "51-200",
-          "secteur": "Construction",
-          "description": "Normandie Renovation uvre a lentretien et la restauration du patrimoine architectural. Forte de sa solide experience, riche de ses hommes et de leurs savoir-faire, lentreprise a tisse des liens etroit",
-          "linkedin": "https://www.linkedin.com/company/normandie-renovation",
-          "score": 42,
-          "address": null
-        },
-        {
-          "nom": "ETANEL",
-          "niche": "BTP / Construction",
-          "site": "etanel.fr",
-          "ville": "Saint-Jean-du-Cardonnay",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "Etanel : Specialiste de la Menuiserie Exterieure en Seine-Maritime (76) et dans lEure (27) depuis 1976 Depuis plus de 47 ans, Etanel est votre expert en installation de menuiseries, volets, portails,",
-          "linkedin": "https://www.linkedin.com/company/etanel",
-          "score": 29,
-          "address": null
-        },
-        {
-          "nom": "MAUGER GAZ MEDICAUX",
-          "niche": "BTP / Construction",
-          "site": "maugergazmedicaux.fr",
-          "ville": "Saint-Jean-du-Cardonnay",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "MAUGER GAZ MEDICAUX is a construction company based out of RUE GEORGES CHARPACK, ST JEAN DU CARDONNAY, France.",
-          "linkedin": "https://www.linkedin.com/company/mauger-gaz-medicaux",
-          "score": 29,
-          "address": null
-        },
-        {
-          "nom": "NICOLAS GAND",
-          "niche": "BTP / Construction",
-          "site": "nicolasgandsarl.fr",
-          "ville": "Saint-Jean-du-Cardonnay",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/nicolas-gand",
-          "score": 18,
-          "address": null
-        },
-        {
-          "nom": "FELEC",
-          "niche": "BTP / Construction",
-          "site": "f-elec.eu",
-          "ville": "La Vaupaliere",
-          "ca": "5M-10M",
-          "effectif": "11-50",
-          "secteur": "Construction of Buildings",
-          "description": "FELEC vous accompagne dans vos projets suivant vos besoins avec une maitrise des technologies nouvelles comme des plus ancienne. Nos clients sont repartis suivant un eventail large tel que entreprise",
-          "linkedin": "https://www.linkedin.com/company/felec",
-          "score": 35,
-          "address": null
-        },
-        {
-          "nom": "IPEB",
-          "niche": "BTP / Construction",
-          "site": "ipeb.fr",
-          "ville": "La Vaupaliere",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "IPEB, Ingenierie pour la Performance Energetique du Batiment, est un BET thermique et fluides specialise en maitrise d'oeuvre technique (genie climatique, chauffage, ventilation, climatisation, couran",
-          "linkedin": "https://www.linkedin.com/company/ipeb",
-          "score": 29,
-          "address": null
-        },
-        {
-          "nom": "La Forêt des Macarons",
+          "nom": "Restaurant Les Capucines",
           "niche": "Restauration",
-          "site": "laforetdesmacarons.com",
-          "ville": "Houppeville",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Soft Drink and Ice Manufacturing",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/la-for%c3%aat-des-macarons",
-          "score": 18,
-          "address": null
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "zone": "Mont-Saint-Aignan/Bois-Guillaume/Bihorel",
-      "villes": [
-        "Bihorel",
-        "Bois-Guillaume",
-        "Isneauville"
-      ],
-      "routeKm": 12.3,
-      "prospects": [
-        {
-          "nom": "VALLEE DE SEINE RENOVATION",
-          "niche": "BTP / Construction",
-          "site": "valleedeseinerenovation.fr",
-          "ville": "Bihorel",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/vallee-de-seine-renovation",
-          "score": 18,
-          "address": null
-        },
-        {
-          "nom": "Le Pétrin de Rouen",
-          "niche": "Restauration",
-          "site": "lepetrinderouen.fr",
-          "ville": "Bihorel",
+          "site": "les-capucines.fr",
+          "ville": "Le Petit-Quevilly",
           "ca": "0-500K",
           "effectif": "1-10",
           "secteur": "Restaurants and Other Eating Places",
           "description": "",
-          "linkedin": "https://www.linkedin.com/company/le-p%c3%a9trin-de-rouen",
+          "linkedin": "https://www.linkedin.com/company/restaurant-les-capucines",
           "score": 12,
           "address": null
         },
         {
-          "nom": "Naturophanie - Stéphanie Naturopathe",
-          "niche": "Naturopathe",
-          "site": "naturophanie.com",
-          "ville": "Bihorel",
+          "nom": "CBR BATIMENT",
+          "niche": "BTP / Construction",
+          "site": "cbr-batiment.fr",
+          "ville": "Le Petit-Quevilly",
+          "ca": "1M-5M",
+          "effectif": "11-50",
+          "secteur": "Construction",
+          "description": "CBR BATIMENT est une entreprise specialisee dans les travaux de gros-oeuvre et de renovation energetique. Creee en 2007, l'entreprise intervient sur des projets dans toute la Normandie.",
+          "linkedin": "https://www.linkedin.com/company/cbr-batiment",
+          "score": 29,
+          "address": null
+        },
+        {
+          "nom": "Au Vrai Délice",
+          "niche": "Restauration",
+          "site": "auvraidelice.fr",
+          "ville": "Le Petit-Quevilly",
           "ca": "0-500K",
           "effectif": "1-10",
-          "secteur": "Alternative Medicine",
-          "description": "Cabinet de naturopathie a Bihorel pres de Rouen. Specialisee troubles digestifs, desordres emotionnels, sante environnementale. Membre du Syndicat des Professionnels de la Naturopathie.",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/au-vrai-d%c3%a9lice",
+          "score": 12,
+          "address": null
+        },
+        {
+          "nom": "DaliRénovation",
+          "niche": "Architecte d'intérieur",
+          "site": "",
+          "ville": "Le Petit-Quevilly",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Interior Design",
+          "description": "Cabinet d'architecte d'interieur au Petit-Quevilly. Transformation d'espaces avec creativite. Pas de site web identifie = fort potentiel.",
           "linkedin": "",
-          "score": 15,
+          "score": 22,
           "address": null
         },
         {
-          "nom": "SOGETI INGENIERIE",
+          "nom": "BATIMEXPERT",
           "niche": "BTP / Construction",
-          "site": "sogeti-ingenierie.fr",
-          "ville": "Bois-Guillaume",
-          "ca": "10M-25M",
-          "effectif": "51-200",
-          "secteur": "Construction",
-          "description": "SOGETI INGENIERIE fournit a ses clients des prestations de conseil, d'etudes et de suivi de travaux dans l'objectif de construire des lieux de vie adaptes aux besoins des usagers. Les differentes impl",
-          "linkedin": "https://www.linkedin.com/company/sogeti-ingenierie",
-          "score": 42,
-          "address": null
-        },
-        {
-          "nom": "Jardin Passions",
-          "niche": "BTP / Construction",
-          "site": "jardinpassions.fr",
-          "ville": "Bois-Guillaume",
+          "site": "batimexpert.com",
+          "ville": "Le Grand-Quevilly",
           "ca": "500K-1M",
           "effectif": "1-10",
           "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/jardin-passions",
-          "score": 18,
-          "address": null
-        },
-        {
-          "nom": "Restaurant | Le BG | Bois-Guillaume",
-          "niche": "Restauration",
-          "site": "restaurantlebg.fr",
-          "ville": "Bois-Guillaume",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/restaurant-le-bg-bois-guillaume",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "Bécret & Associés",
-          "niche": "Expert-Comptable",
-          "site": "becret-associes.fr",
-          "ville": "Bois-Guillaume",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Accounting",
-          "description": "Cabinet d'expertise comptable independant depuis 1977 a Bois-Guillaume. Trois associes experts-comptables et commissaires aux comptes. Site web vieillissant.",
-          "linkedin": "",
-          "score": 25,
-          "address": null
-        },
-        {
-          "nom": "BET CONCEPT NF",
-          "niche": "BTP / Construction",
-          "site": "conceptnf.fr",
-          "ville": "Isneauville",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "Maitrise d'oeuvre Bureau d'etudes CVC / electricite Coordination SSI Thermique",
-          "linkedin": "https://www.linkedin.com/company/bet-concept-nf",
-          "score": 29,
-          "address": null
-        },
-        {
-          "nom": "Le Comptoir Colonial (Boutique Magasin Usine Isneauville)",
-          "niche": "Restauration",
-          "site": "lecomptoircolonial.com",
-          "ville": "Isneauville",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Meat Markets",
-          "description": "",
-          "linkedin": "",
-          "score": 16,
-          "address": null
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "zone": "Mont-Saint-Aignan/Bois-Guillaume/Bihorel",
-      "villes": [
-        "Isneauville",
-        "Mont-Saint-Aignan"
-      ],
-      "routeKm": 12.3,
-      "prospects": [
-        {
-          "nom": "Dailly Traiteur",
-          "niche": "Restauration",
-          "site": "daillytraiteur.fr",
-          "ville": "Isneauville",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/dailly-traiteur",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "La poêlée des chefs",
-          "niche": "Restauration",
-          "site": "lapoeleedeschefs.fr",
-          "ville": "Isneauville",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/la-po%c3%aal%c3%a9e-des-chefs",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "REBER Économistes",
-          "niche": "BTP / Construction",
-          "site": "reber-economiste.com",
-          "ville": "Mont-Saint-Aignan",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "Cabinet REBER : 75 ans d'expertise en economie de la construction Specialise dans l'economie de la construction, le cabinet REBER accompagne ses clients tout au long du processus de conception des bat",
-          "linkedin": "https://www.linkedin.com/company/reber-economistes",
+          "description": "Coordonnateur OPC - Coordonnateur SPS sur tous types de projet Mission ARL -",
+          "linkedin": "https://www.linkedin.com/company/batimexpert",
           "score": 19,
           "address": null
         },
         {
-          "nom": "Restauration châteaux",
-          "niche": "BTP / Construction",
-          "site": "restaurationchateaux.fr",
-          "ville": "Mont-Saint-Aignan",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/restauration-ch%c3%a2teaux",
-          "score": 18,
-          "address": null
-        },
-        {
-          "nom": "Le Mont Saint Sushi",
+          "nom": "Chantegrill",
           "niche": "Restauration",
-          "site": "lemontsaintsushi.fr",
-          "ville": "Mont-Saint-Aignan",
+          "site": "chantegrill.fr",
+          "ville": "Le Grand-Quevilly",
           "ca": "0-500K",
           "effectif": "1-10",
           "secteur": "Restaurants and Other Eating Places",
           "description": "",
-          "linkedin": "https://www.linkedin.com/company/le-mont-saint-sushi",
+          "linkedin": "https://www.linkedin.com/company/chantegrill",
           "score": 12,
           "address": null
         },
         {
-          "nom": "Cordiertraiteur",
+          "nom": "La Table de Sacha",
           "niche": "Restauration",
-          "site": "cordiertraiteur.fr",
-          "ville": "Mont-Saint-Aignan",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/cordiertraiteur",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "La Table d'Erisay",
-          "niche": "Restauration",
-          "site": "latablederisay.fr",
-          "ville": "Mont-Saint-Aignan",
+          "site": "latabledesacha.com",
+          "ville": "Le Grand-Quevilly",
           "ca": "0-500K",
           "effectif": "1-10",
           "secteur": "Full-Service Restaurants",
@@ -450,41 +244,18 @@
           "address": null
         },
         {
-          "nom": "Instinct Jardin",
+          "nom": "Les Mains Vertes",
           "niche": "Paysagiste",
-          "site": "instinct-jardin.fr",
-          "ville": "Mont-Saint-Aignan",
+          "site": "",
+          "ville": "Le Grand-Quevilly",
           "ca": "500K-1M",
           "effectif": "1-10",
           "secteur": "Landscaping Services",
-          "description": "Jardinier paysagiste et elagueur pres de Rouen en Seine-Maritime depuis 2014. Entreprise familiale basee a Mont-Saint-Aignan. Amenagement, terrasse, plantation, entretien.",
+          "description": "Societe specialisee dans l'amenagement et l'entretien d'espaces verts. 17 rue Clement Ader, Le Grand-Quevilly. Pas de site web = gros potentiel.",
           "linkedin": "",
-          "score": 19,
+          "score": 22,
           "address": null
         },
-        {
-          "nom": "Oeuvre d'Arbre",
-          "niche": "Paysagiste",
-          "site": "oeuvredarbre.fr",
-          "ville": "Mont-Saint-Aignan",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Landscaping Services",
-          "description": "Entreprise du paysage fondee en 2007 a Mont-Saint-Aignan par Thibault Megard. Creation et entretien de jardins en agglomeration rouennaise.",
-          "linkedin": "",
-          "score": 19,
-          "address": null
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "zone": "Rouen Centre",
-      "villes": [
-        "Rouen"
-      ],
-      "routeKm": 6.7,
-      "prospects": [
         {
           "nom": "ALBEDO Ingénierie Environnementale",
           "niche": "BTP / Construction",
@@ -510,7 +281,17 @@
           "linkedin": "https://www.linkedin.com/company/menuiserie-delaunay-rouen",
           "score": 29,
           "address": null
-        },
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "zone": "Rouen",
+      "villes": [
+        "Rouen"
+      ],
+      "routeKm": 14.3,
+      "prospects": [
         {
           "nom": "DEPS ROUEN plomberie - sanitaire",
           "niche": "BTP / Construction",
@@ -547,19 +328,6 @@
           "secteur": "Restaurants and Other Eating Places",
           "description": "Depuis 2013, David Oper et Amelie Tessier vous accueillent au restaurant DEux-Memes, une table gastronomique situee en plein coeur de Rouen. Mobilier tendance, decoration soignee et poutres apparentes",
           "linkedin": "https://www.linkedin.com/company/restaurant-deux-memes",
-          "score": 23,
-          "address": null
-        },
-        {
-          "nom": "STATION SERVICE ROUEN",
-          "niche": "Restauration",
-          "site": "stationservicerouen.fr",
-          "ville": "Rouen",
-          "ca": "500K-1M",
-          "effectif": "11-50",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "Derriere \"Station Service\" cree fin 2019, on retrouve Stephanie Vadaine! Une rouennaise qui co-fonde en 2011 l'un des premiers Coffee-shop independants de France a Rouen: le \"Citizen Coffee\". A mi che",
-          "linkedin": "https://www.linkedin.com/company/station-service-rouen",
           "score": 23,
           "address": null
         },
@@ -614,17 +382,7 @@
           "linkedin": "https://www.linkedin.com/company/rd-electricien",
           "score": 18,
           "address": null
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "zone": "Rouen Centre",
-      "villes": [
-        "Rouen"
-      ],
-      "routeKm": 6.7,
-      "prospects": [
+        },
         {
           "nom": "FOLLAIN COUVERTURE",
           "niche": "BTP / Construction",
@@ -635,32 +393,6 @@
           "secteur": "Construction",
           "description": "",
           "linkedin": "https://www.linkedin.com/company/follain-couverture",
-          "score": 18,
-          "address": null
-        },
-        {
-          "nom": "SATrouen",
-          "niche": "BTP / Construction",
-          "site": "satrouen.fr",
-          "ville": "Rouen",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/satrouen",
-          "score": 18,
-          "address": null
-        },
-        {
-          "nom": "Le Fruitier des Halles",
-          "niche": "BTP / Construction",
-          "site": "lefruitierdeshalles.fr",
-          "ville": "Rouen",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/le-fruitier-des-halles",
           "score": 18,
           "address": null
         },
@@ -689,7 +421,17 @@
           "linkedin": "https://www.linkedin.com/company/walabox",
           "score": 13,
           "address": null
-        },
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "zone": "Rouen",
+      "villes": [
+        "Rouen"
+      ],
+      "routeKm": 14.3,
+      "prospects": [
         {
           "nom": "Le 6ème Sens",
           "niche": "Restauration",
@@ -713,19 +455,6 @@
           "secteur": "Restaurants and Other Eating Places",
           "description": "Depuis 18 ans, le traiteur \"Delices de Yifan\" vous propose une cuisine asiatique, a emporter ou sur place. Venez donc deguster des specialites chinoises, vietnamiennes ou meme japonaises ! Ouvert tous",
           "linkedin": "https://www.linkedin.com/company/delices-de-yifan",
-          "score": 13,
-          "address": null
-        },
-        {
-          "nom": "Fast Pizzarouen",
-          "niche": "Restauration",
-          "site": "fastpizzarouen.fr",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "Fast pizza Rouen est une pizzeria installee depuis 2008 au 7 rue Jean Lecanuet a deux pas de la mairie de Rouen, elle vous proposes 34 recettes de pizzas cuisinees avec des produits frais et dans le r",
-          "linkedin": "https://www.linkedin.com/company/fast-pizzarouen",
           "score": 13,
           "address": null
         },
@@ -754,17 +483,7 @@
           "linkedin": "https://www.linkedin.com/company/b%c3%a2n-tha%c3%af",
           "score": 12,
           "address": null
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "zone": "Rouen Centre",
-      "villes": [
-        "Rouen"
-      ],
-      "routeKm": 6.7,
-      "prospects": [
+        },
         {
           "nom": "Acqua et Farine",
           "niche": "Restauration",
@@ -792,19 +511,6 @@
           "address": null
         },
         {
-          "nom": "Galaxypizzeria",
-          "niche": "Restauration",
-          "site": "galaxypizzeria.fr",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/galaxypizzeria",
-          "score": 12,
-          "address": null
-        },
-        {
           "nom": "Manger la Nuit rouen",
           "niche": "Restauration",
           "site": "mangerlanuitrouen.com",
@@ -818,32 +524,6 @@
           "address": null
         },
         {
-          "nom": "MANGER LA NUIT",
-          "niche": "Restauration",
-          "site": "mangerlanuit.com",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/manger-la-nuit",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "SUSHI ROUEN",
-          "niche": "Restauration",
-          "site": "sushirouen.com",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/sushi-rouen",
-          "score": 12,
-          "address": null
-        },
-        {
           "nom": "Au Prince des Sables",
           "niche": "Restauration",
           "site": "auprincedesables.fr",
@@ -853,19 +533,6 @@
           "secteur": "Restaurants and Other Eating Places",
           "description": "",
           "linkedin": "https://www.linkedin.com/company/au-prince-des-sables",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "Pizza delicerouen",
-          "niche": "Restauration",
-          "site": "pizzadelicerouen.fr",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/pizza-delicerouen",
           "score": 12,
           "address": null
         },
@@ -898,12 +565,12 @@
       ]
     },
     {
-      "id": 8,
-      "zone": "Rouen Centre",
+      "id": 5,
+      "zone": "Rouen",
       "villes": [
         "Rouen"
       ],
-      "routeKm": 6.7,
+      "routeKm": 14.3,
       "prospects": [
         {
           "nom": "Les Maraîchers",
@@ -984,19 +651,6 @@
           "address": null
         },
         {
-          "nom": "THE BUBBLE PLACE",
-          "niche": "Restauration",
-          "site": "thebubbleplace.fr",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/the-bubble-place",
-          "score": 12,
-          "address": null
-        },
-        {
           "nom": "L'ODAS",
           "niche": "Restauration",
           "site": "lodas.fr",
@@ -1034,29 +688,6 @@
           "linkedin": "https://www.linkedin.com/company/les-papilles-en-seine",
           "score": 10,
           "address": null
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "zone": "Rouen Centre",
-      "villes": [
-        "Rouen"
-      ],
-      "routeKm": 6.7,
-      "prospects": [
-        {
-          "nom": "VITAMINES SUR LE POUCE",
-          "niche": "Restauration",
-          "site": "vitamines-sur-lepouce.eatbu.com",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/vitamines-sur-le-pouce",
-          "score": 10,
-          "address": null
         },
         {
           "nom": "Safi Food House",
@@ -1070,20 +701,17 @@
           "linkedin": "https://www.linkedin.com/company/safi-food-house",
           "score": 10,
           "address": null
-        },
-        {
-          "nom": "le dwich snacking rouen",
-          "niche": "Restauration",
-          "site": "le-dwich-snacking-rouen.eatbu.com",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/le-dwich-snacking-rouen",
-          "score": 10,
-          "address": null
-        },
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "zone": "Rouen",
+      "villes": [
+        "Rouen"
+      ],
+      "routeKm": 14.3,
+      "prospects": [
         {
           "nom": "Taste of Tandoori rouen",
           "niche": "Restauration",
@@ -1094,19 +722,6 @@
           "secteur": "Restaurants and Other Eating Places",
           "description": "",
           "linkedin": "https://www.linkedin.com/company/taste-of-tandoori-rouen",
-          "score": 10,
-          "address": null
-        },
-        {
-          "nom": "H24 pizza rouen",
-          "niche": "Restauration",
-          "site": "h24pizzarouen.webself.net",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/h24-pizza-rouen",
           "score": 10,
           "address": null
         },
@@ -1163,29 +778,6 @@
           "address": null
         },
         {
-          "nom": "Taste of Tandoori-rouen on Strikingly",
-          "niche": "Restauration",
-          "site": "tasteoftandoori-rouen.strikingly.com",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/taste-of-tandoori-rouen-on-strikingly",
-          "score": 10,
-          "address": null
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "zone": "Rouen Centre",
-      "villes": [
-        "Rouen"
-      ],
-      "routeKm": 6.7,
-      "prospects": [
-        {
           "nom": "La Terrasse",
           "niche": "Restauration",
           "site": "laterrasse-rouen.fr",
@@ -1238,45 +830,6 @@
           "address": null
         },
         {
-          "nom": "NIGHT PIZZA PASTA",
-          "niche": "Restauration",
-          "site": "night-pizza-pasta.business.site",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/night-pizza-pasta",
-          "score": 10,
-          "address": null
-        },
-        {
-          "nom": "Street Food fastfoodrestaurant",
-          "niche": "Restauration",
-          "site": "streetfood-fastfoodrestaurant.business.site",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/street-food-fastfoodrestaurant",
-          "score": 10,
-          "address": null
-        },
-        {
-          "nom": "pizzeria de la cathédrale",
-          "niche": "Restauration",
-          "site": "pizzeria-de-la-cathedrale.business.site",
-          "ville": "Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/pizzeria-de-la-cath%c3%a9drale",
-          "score": 10,
-          "address": null
-        },
-        {
           "nom": "Dame Cakes",
           "niche": "Restauration",
           "site": "damecakes.fr",
@@ -1288,7 +841,17 @@
           "linkedin": "",
           "score": 25,
           "address": null
-        },
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "zone": "Rouen",
+      "villes": [
+        "Rouen"
+      ],
+      "routeKm": 14.3,
+      "prospects": [
         {
           "nom": "Café Moustache - Café des chats Rouen",
           "niche": "Restauration",
@@ -1314,17 +877,7 @@
           "linkedin": "",
           "score": 19,
           "address": null
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "zone": "Rouen Centre",
-      "villes": [
-        "Rouen"
-      ],
-      "routeKm": 6.7,
-      "prospects": [
+        },
         {
           "nom": "Conception Paysage 276",
           "niche": "Paysagiste",
@@ -1428,7 +981,18 @@
           "linkedin": "",
           "score": 19,
           "address": null
-        },
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "zone": "Rouen / Canteleu",
+      "villes": [
+        "Rouen",
+        "Canteleu"
+      ],
+      "routeKm": 21,
+      "prospects": [
         {
           "nom": "Au Coeur de Ma Maison",
           "niche": "Architecte d'intérieur",
@@ -1532,96 +1096,421 @@
           "linkedin": "",
           "score": 19,
           "address": null
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "zone": "Darnétal/Franqueville/Est",
-      "villes": [
-        "Franqueville-Saint-Pierre",
-        "Quévreville-la-Poterie",
-        "Saint-Jacques-sur-Darnétal",
-        "Darnétal"
-      ],
-      "routeKm": 13.6,
-      "prospects": [
-        {
-          "nom": "GALLIS",
-          "niche": "BTP / Construction",
-          "site": "gallis.fr",
-          "ville": "Franqueville-Saint-Pierre",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "111 RUE DU GENERAL DE GAULLE, FRANQUEVILLE ST PIERRE, France.",
-          "linkedin": "https://www.linkedin.com/company/gallis",
-          "score": 29,
-          "address": null
         },
         {
-          "nom": "LOGI HABITAT",
-          "niche": "BTP / Construction",
-          "site": "logi-habitat.fr",
-          "ville": "Franqueville-Saint-Pierre",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "LOGI HABITAT is a construction company based out of ZONE D ACTIVITES DE CLAIRE VOIE 123 RUE DU GENERAL DE GAULLE, FRANQUEVILLE ST PIERRE, France.",
-          "linkedin": "https://www.linkedin.com/company/logi-habitat",
-          "score": 19,
-          "address": null
-        },
-        {
-          "nom": "Délice du soleil (Le)",
+          "nom": "Le Moulin de Canteleu",
           "niche": "Restauration",
-          "site": "ledelicedusoleil.com",
-          "ville": "Quévreville-la-Poterie",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Caterers",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/le-delice-du-soleil",
-          "score": 18,
-          "address": null
-        },
-        {
-          "nom": "Le Délice du Soleil",
-          "niche": "Restauration",
-          "site": "ledelicedusoleil.com",
-          "ville": "Quévreville-la-Poterie",
+          "site": "lemoulindecanteleu.eatbu.com",
+          "ville": "Canteleu",
           "ca": "0-500K",
           "effectif": "1-10",
           "secteur": "Restaurants and Other Eating Places",
           "description": "",
-          "linkedin": "https://www.linkedin.com/company/le-d%c3%a9lice-du-soleil",
+          "linkedin": "https://www.linkedin.com/company/le-moulin-de-canteleu",
+          "score": 10,
+          "address": null
+        },
+        {
+          "nom": "RESTAURANT CHEZ RENE",
+          "niche": "Restauration",
+          "site": "restaurant-chez-rene.fr",
+          "ville": "Canteleu",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Full-Service Restaurants",
+          "description": "",
+          "linkedin": "",
+          "score": 10,
+          "address": null
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "zone": "Déville-lès-Rouen / Maromme + 3 autres",
+      "villes": [
+        "Déville-lès-Rouen",
+        "Maromme",
+        "Le Houlme",
+        "Bihorel",
+        "Bois-Guillaume"
+      ],
+      "routeKm": 33.4,
+      "prospects": [
+        {
+          "nom": "Avenir ISO",
+          "niche": "BTP / Construction",
+          "site": "avenir-iso.fr",
+          "ville": "Déville-lès-Rouen",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Construction",
+          "description": "L'entreprise Avenir ISO propose de nombreux services aux particuliers : isolation thermique (exterieur et combles), pose de menuiseries et ravalement. L'isolation thermique par l'exterieur permet dapp",
+          "linkedin": "https://www.linkedin.com/company/avenir-iso",
+          "score": 19,
+          "address": null
+        },
+        {
+          "nom": "TECTUM by A. Savary",
+          "niche": "BTP / Construction",
+          "site": "tectum-couverture.com",
+          "ville": "Déville-lès-Rouen",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Building Finishing Contractors",
+          "description": "Tectum by AS est specialisee dans tous les travaux de couverture, zinguerie, bardage, etancheite, isolation de toiture et pose de fenetres de toit type Velux et puits de lumiere, en neuf comme en reno",
+          "linkedin": "https://www.linkedin.com/company/tectum-by-a-savary",
+          "score": 19,
+          "address": null
+        },
+        {
+          "nom": "La Cuisine De Caroline",
+          "niche": "Restauration",
+          "site": "lacuisinedecaroline.com",
+          "ville": "Déville-lès-Rouen",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/la-cuisine-de-caroline",
           "score": 12,
           "address": null
         },
         {
-          "nom": "KA Groupe",
+          "nom": "KARAÏB FAMILY traiteur",
+          "niche": "Restauration",
+          "site": "karaib-family-traiteur.eatbu.com",
+          "ville": "Maromme",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/kara%c3%afb-family-traiteur",
+          "score": 10,
+          "address": null
+        },
+        {
+          "nom": "SASU DURAND FILS",
           "niche": "BTP / Construction",
-          "site": "ka-groupe.fr",
-          "ville": "Saint-Jacques-sur-Darnétal",
+          "site": "durand-fils.com",
+          "ville": "Le Houlme",
+          "ca": "10M-25M",
+          "effectif": "51-200",
+          "secteur": "Construction",
+          "description": "Durand Fils, entreprise generaliste du batiment, situee en SeineMaritime, se deplace pour tous vos travaux de charpente, couverture, bardage, isolation, agrandissement, et renovation de maison dans la",
+          "linkedin": "https://www.linkedin.com/company/sasu-durand-fils",
+          "score": 42,
+          "address": null
+        },
+        {
+          "nom": "SARL GRANITS MATERIAUX",
+          "niche": "BTP / Construction",
+          "site": "granits-materiaux.fr",
+          "ville": "Le Houlme",
           "ca": "1M-5M",
           "effectif": "11-50",
           "secteur": "Construction",
-          "description": "Particuliers et professionnels, nos equipes KA de plomberie, KA de couverture et KA de froid interviennent en Haute-Normandie (Seine-Maritime et Eure).",
-          "linkedin": "https://www.linkedin.com/company/ka-de-plomberie-entreprise",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/sarl-granits-materiaux",
+          "score": 28,
+          "address": null
+        },
+        {
+          "nom": "VALLEE DE SEINE RENOVATION",
+          "niche": "BTP / Construction",
+          "site": "valleedeseinerenovation.fr",
+          "ville": "Bihorel",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Construction",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/vallee-de-seine-renovation",
+          "score": 18,
+          "address": null
+        },
+        {
+          "nom": "Le Pétrin de Rouen",
+          "niche": "Restauration",
+          "site": "lepetrinderouen.fr",
+          "ville": "Bihorel",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/le-p%c3%a9trin-de-rouen",
+          "score": 12,
+          "address": null
+        },
+        {
+          "nom": "Naturophanie - Stéphanie Naturopathe",
+          "niche": "Naturopathe",
+          "site": "naturophanie.com",
+          "ville": "Bihorel",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Alternative Medicine",
+          "description": "Cabinet de naturopathie a Bihorel pres de Rouen. Specialisee troubles digestifs, desordres emotionnels, sante environnementale. Membre du Syndicat des Professionnels de la Naturopathie.",
+          "linkedin": "",
+          "score": 15,
+          "address": null
+        },
+        {
+          "nom": "SOGETI INGENIERIE",
+          "niche": "BTP / Construction",
+          "site": "sogeti-ingenierie.fr",
+          "ville": "Bois-Guillaume",
+          "ca": "10M-25M",
+          "effectif": "51-200",
+          "secteur": "Construction",
+          "description": "SOGETI INGENIERIE fournit a ses clients des prestations de conseil, d'etudes et de suivi de travaux dans l'objectif de construire des lieux de vie adaptes aux besoins des usagers. Les differentes impl",
+          "linkedin": "https://www.linkedin.com/company/sogeti-ingenierie",
+          "score": 42,
+          "address": null
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "zone": "Bois-Guillaume / Mont-Saint-Aignan / Isneauville",
+      "villes": [
+        "Bois-Guillaume",
+        "Mont-Saint-Aignan",
+        "Isneauville"
+      ],
+      "routeKm": 28.5,
+      "prospects": [
+        {
+          "nom": "Jardin Passions",
+          "niche": "BTP / Construction",
+          "site": "jardinpassions.fr",
+          "ville": "Bois-Guillaume",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Construction",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/jardin-passions",
+          "score": 18,
+          "address": null
+        },
+        {
+          "nom": "Restaurant | Le BG | Bois-Guillaume",
+          "niche": "Restauration",
+          "site": "restaurantlebg.fr",
+          "ville": "Bois-Guillaume",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/restaurant-le-bg-bois-guillaume",
+          "score": 12,
+          "address": null
+        },
+        {
+          "nom": "Bécret & Associés",
+          "niche": "Expert-Comptable",
+          "site": "becret-associes.fr",
+          "ville": "Bois-Guillaume",
+          "ca": "1M-5M",
+          "effectif": "11-50",
+          "secteur": "Accounting",
+          "description": "Cabinet d'expertise comptable independant depuis 1977 a Bois-Guillaume. Trois associes experts-comptables et commissaires aux comptes. Site web vieillissant.",
+          "linkedin": "",
+          "score": 25,
+          "address": null
+        },
+        {
+          "nom": "REBER Économistes",
+          "niche": "BTP / Construction",
+          "site": "reber-economiste.com",
+          "ville": "Mont-Saint-Aignan",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Construction",
+          "description": "Cabinet REBER : 75 ans d'expertise en economie de la construction Specialise dans l'economie de la construction, le cabinet REBER accompagne ses clients tout au long du processus de conception des bat",
+          "linkedin": "https://www.linkedin.com/company/reber-economistes",
+          "score": 19,
+          "address": null
+        },
+        {
+          "nom": "Restauration châteaux",
+          "niche": "BTP / Construction",
+          "site": "restaurationchateaux.fr",
+          "ville": "Mont-Saint-Aignan",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Construction",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/restauration-ch%c3%a2teaux",
+          "score": 18,
+          "address": null
+        },
+        {
+          "nom": "Cordiertraiteur",
+          "niche": "Restauration",
+          "site": "cordiertraiteur.fr",
+          "ville": "Mont-Saint-Aignan",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/cordiertraiteur",
+          "score": 12,
+          "address": null
+        },
+        {
+          "nom": "La Table d'Erisay",
+          "niche": "Restauration",
+          "site": "latablederisay.fr",
+          "ville": "Mont-Saint-Aignan",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Full-Service Restaurants",
+          "description": "",
+          "linkedin": "",
+          "score": 10,
+          "address": null
+        },
+        {
+          "nom": "Instinct Jardin",
+          "niche": "Paysagiste",
+          "site": "instinct-jardin.fr",
+          "ville": "Mont-Saint-Aignan",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Landscaping Services",
+          "description": "Jardinier paysagiste et elagueur pres de Rouen en Seine-Maritime depuis 2014. Entreprise familiale basee a Mont-Saint-Aignan. Amenagement, terrasse, plantation, entretien.",
+          "linkedin": "",
+          "score": 19,
+          "address": null
+        },
+        {
+          "nom": "Oeuvre d'Arbre",
+          "niche": "Paysagiste",
+          "site": "oeuvredarbre.fr",
+          "ville": "Mont-Saint-Aignan",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Landscaping Services",
+          "description": "Entreprise du paysage fondee en 2007 a Mont-Saint-Aignan par Thibault Megard. Creation et entretien de jardins en agglomeration rouennaise.",
+          "linkedin": "",
+          "score": 19,
+          "address": null
+        },
+        {
+          "nom": "BET CONCEPT NF",
+          "niche": "BTP / Construction",
+          "site": "conceptnf.fr",
+          "ville": "Isneauville",
+          "ca": "1M-5M",
+          "effectif": "11-50",
+          "secteur": "Construction",
+          "description": "Maitrise d'oeuvre Bureau d'etudes CVC / electricite Coordination SSI Thermique",
+          "linkedin": "https://www.linkedin.com/company/bet-concept-nf",
+          "score": 29,
+          "address": null
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "zone": "Isneauville / La Vaupaliere + 2 autres",
+      "villes": [
+        "Isneauville",
+        "La Vaupaliere",
+        "Saint-Jean-du-Cardonnay",
+        "Darnétal"
+      ],
+      "routeKm": 41.5,
+      "prospects": [
+        {
+          "nom": "Dailly Traiteur",
+          "niche": "Restauration",
+          "site": "daillytraiteur.fr",
+          "ville": "Isneauville",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/dailly-traiteur",
+          "score": 12,
+          "address": null
+        },
+        {
+          "nom": "La poêlée des chefs",
+          "niche": "Restauration",
+          "site": "lapoeleedeschefs.fr",
+          "ville": "Isneauville",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/la-po%c3%aal%c3%a9e-des-chefs",
+          "score": 12,
+          "address": null
+        },
+        {
+          "nom": "FELEC",
+          "niche": "BTP / Construction",
+          "site": "f-elec.eu",
+          "ville": "La Vaupaliere",
+          "ca": "5M-10M",
+          "effectif": "11-50",
+          "secteur": "Construction of Buildings",
+          "description": "FELEC vous accompagne dans vos projets suivant vos besoins avec une maitrise des technologies nouvelles comme des plus ancienne. Nos clients sont repartis suivant un eventail large tel que entreprise",
+          "linkedin": "https://www.linkedin.com/company/felec",
+          "score": 35,
+          "address": null
+        },
+        {
+          "nom": "IPEB",
+          "niche": "BTP / Construction",
+          "site": "ipeb.fr",
+          "ville": "La Vaupaliere",
+          "ca": "1M-5M",
+          "effectif": "11-50",
+          "secteur": "Construction",
+          "description": "IPEB, Ingenierie pour la Performance Energetique du Batiment, est un BET thermique et fluides specialise en maitrise d'oeuvre technique (genie climatique, chauffage, ventilation, climatisation, couran",
+          "linkedin": "https://www.linkedin.com/company/ipeb",
           "score": 29,
           "address": null
         },
         {
-          "nom": "SAE Tribout",
+          "nom": "Normandie Rénovation",
           "niche": "BTP / Construction",
-          "site": "saetribout.fr",
-          "ville": "Saint-Jacques-sur-Darnétal",
+          "site": "normandie-renovation.com",
+          "ville": "Saint-Jean-du-Cardonnay",
+          "ca": "10M-25M",
+          "effectif": "51-200",
+          "secteur": "Construction",
+          "description": "Normandie Renovation uvre a lentretien et la restauration du patrimoine architectural. Forte de sa solide experience, riche de ses hommes et de leurs savoir-faire, lentreprise a tisse des liens etroit",
+          "linkedin": "https://www.linkedin.com/company/normandie-renovation",
+          "score": 42,
+          "address": null
+        },
+        {
+          "nom": "ETANEL",
+          "niche": "BTP / Construction",
+          "site": "etanel.fr",
+          "ville": "Saint-Jean-du-Cardonnay",
           "ca": "1M-5M",
           "effectif": "11-50",
           "secteur": "Construction",
-          "description": "SAE TRIBOUT est une societe dapplications electriques courants forts et courants faibles, independante, specialiste du tertiaire et de lindustrie, installee a Rouen depuis plus de 60 ans. - Conception",
-          "linkedin": "https://www.linkedin.com/company/sae-tribout",
+          "description": "Etanel : Specialiste de la Menuiserie Exterieure en Seine-Maritime (76) et dans lEure (27) depuis 1976 Depuis plus de 47 ans, Etanel est votre expert en installation de menuiseries, volets, portails,",
+          "linkedin": "https://www.linkedin.com/company/etanel",
           "score": 29,
+          "address": null
+        },
+        {
+          "nom": "NICOLAS GAND",
+          "niche": "BTP / Construction",
+          "site": "nicolasgandsarl.fr",
+          "ville": "Saint-Jean-du-Cardonnay",
+          "ca": "500K-1M",
+          "effectif": "1-10",
+          "secteur": "Construction",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/nicolas-gand",
+          "score": 18,
           "address": null
         },
         {
@@ -1651,19 +1540,6 @@
           "address": null
         },
         {
-          "nom": "Pizzeria Le Pacha",
-          "niche": "Restauration",
-          "site": "pizzerialepacha.fr",
-          "ville": "Darnétal",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/pizzeria-le-pacha",
-          "score": 12,
-          "address": null
-        },
-        {
           "nom": "Restaurant le Darnétal",
           "niche": "Restauration",
           "site": "restaurantledarnetal.business.site",
@@ -1679,378 +1555,69 @@
       ]
     },
     {
-      "id": 13,
-      "zone": "Petit-Quevilly/Grand-Quevilly",
+      "id": 12,
+      "zone": "Franqueville-Saint-Pierre / Petit-Couronne + 5 autres",
       "villes": [
-        "Le Grand-Quevilly",
-        "Le Petit-Quevilly"
+        "Franqueville-Saint-Pierre",
+        "Petit-Couronne",
+        "Grand-Couronne",
+        "Oissel",
+        "Tourville-la-Rivière",
+        "Saint-Aubin-lès-Elbeuf",
+        "Elbeuf"
       ],
-      "routeKm": 7.6,
+      "routeKm": 42,
       "prospects": [
         {
-          "nom": "BATIMEXPERT",
+          "nom": "GALLIS",
           "niche": "BTP / Construction",
-          "site": "batimexpert.com",
-          "ville": "Le Grand-Quevilly",
+          "site": "gallis.fr",
+          "ville": "Franqueville-Saint-Pierre",
+          "ca": "1M-5M",
+          "effectif": "11-50",
+          "secteur": "Construction",
+          "description": "111 RUE DU GENERAL DE GAULLE, FRANQUEVILLE ST PIERRE, France.",
+          "linkedin": "https://www.linkedin.com/company/gallis",
+          "score": 29,
+          "address": null
+        },
+        {
+          "nom": "LOGI HABITAT",
+          "niche": "BTP / Construction",
+          "site": "logi-habitat.fr",
+          "ville": "Franqueville-Saint-Pierre",
           "ca": "500K-1M",
           "effectif": "1-10",
           "secteur": "Construction",
-          "description": "Coordonnateur OPC - Coordonnateur SPS sur tous types de projet Mission ARL -",
-          "linkedin": "https://www.linkedin.com/company/batimexpert",
+          "description": "LOGI HABITAT is a construction company based out of ZONE D ACTIVITES DE CLAIRE VOIE 123 RUE DU GENERAL DE GAULLE, FRANQUEVILLE ST PIERRE, France.",
+          "linkedin": "https://www.linkedin.com/company/logi-habitat",
           "score": 19,
           "address": null
         },
         {
-          "nom": "Chantegrill",
-          "niche": "Restauration",
-          "site": "chantegrill.fr",
-          "ville": "Le Grand-Quevilly",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/chantegrill",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "La Table de Sacha",
-          "niche": "Restauration",
-          "site": "latabledesacha.com",
-          "ville": "Le Grand-Quevilly",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Full-Service Restaurants",
-          "description": "",
-          "linkedin": "",
-          "score": 10,
-          "address": null
-        },
-        {
-          "nom": "Les Mains Vertes",
-          "niche": "Paysagiste",
-          "site": "",
-          "ville": "Le Grand-Quevilly",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Landscaping Services",
-          "description": "Societe specialisee dans l'amenagement et l'entretien d'espaces verts. 17 rue Clement Ader, Le Grand-Quevilly. Pas de site web = gros potentiel.",
-          "linkedin": "",
-          "score": 22,
-          "address": null
-        },
-        {
-          "nom": "GRANULYS",
+          "nom": "CUILLER FRERES",
           "niche": "BTP / Construction",
-          "site": "granulys.fr",
-          "ville": "Le Petit-Quevilly",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/granulys",
-          "score": 18,
-          "address": null
-        },
-        {
-          "nom": "LES WRAPETTES",
-          "niche": "Restauration",
-          "site": "leswrapettes.com",
-          "ville": "Le Petit-Quevilly",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/les-wrapettes",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "Restaurant Les Capucines",
-          "niche": "Restauration",
-          "site": "les-capucines.fr",
-          "ville": "Le Petit-Quevilly",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/restaurant-les-capucines",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "CBR BATIMENT",
-          "niche": "BTP / Construction",
-          "site": "cbr-batiment.fr",
-          "ville": "Le Petit-Quevilly",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "CBR BATIMENT est une entreprise specialisee dans les travaux de gros-oeuvre et de renovation energetique. Creee en 2007, l'entreprise intervient sur des projets dans toute la Normandie.",
-          "linkedin": "https://www.linkedin.com/company/cbr-batiment",
-          "score": 29,
-          "address": null
-        },
-        {
-          "nom": "Au Vrai Délice",
-          "niche": "Restauration",
-          "site": "auvraidelice.fr",
-          "ville": "Le Petit-Quevilly",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/au-vrai-d%c3%a9lice",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "DaliRénovation",
-          "niche": "Architecte d'intérieur",
-          "site": "",
-          "ville": "Le Petit-Quevilly",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Interior Design",
-          "description": "Cabinet d'architecte d'interieur au Petit-Quevilly. Transformation d'espaces avec creativite. Pas de site web identifie = fort potentiel.",
-          "linkedin": "",
-          "score": 22,
-          "address": null
-        }
-      ]
-    },
-    {
-      "id": 14,
-      "zone": "Sotteville/Saint-Étienne-du-Rouvray",
-      "villes": [
-        "Saint-Étienne-du-Rouvray",
-        "Sotteville-lès-Rouen"
-      ],
-      "routeKm": 3.1,
-      "prospects": [
-        {
-          "nom": "AC2F Normandie",
-          "niche": "BTP / Construction",
-          "site": "ac2f-normandie.fr",
-          "ville": "Saint-Étienne-du-Rouvray",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "Creee en 2005, AC2F Normandie est specialisee dans les travaux dinstallation electrique en courant fort et courant faible. En 2016, vient la creation dOMNIS System specialise dans les systemes de secu",
-          "linkedin": "https://www.linkedin.com/company/ac2f-normandie",
-          "score": 29,
-          "address": null
-        },
-        {
-          "nom": "RAV EXP",
-          "niche": "BTP / Construction",
-          "site": "ravexp.fr",
-          "ville": "Saint-Étienne-du-Rouvray",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "RAV EXP Specialise dans les revetements de facades ISOLATION THERMIQUE PAR L'EXTERIEUR (ITE) RAVALEMENT PAREMENT BRIQUES BARDAGES PEINTURE",
-          "linkedin": "https://www.linkedin.com/company/ravexp",
-          "score": 29,
-          "address": null
-        },
-        {
-          "nom": "GODEFROY FILS",
-          "niche": "BTP / Construction",
-          "site": "godefroy-fils.fr",
-          "ville": "Sotteville-lès-Rouen",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/godefroy-fils",
-          "score": 28,
-          "address": null
-        },
-        {
-          "nom": "NORMANDY CLIM",
-          "niche": "BTP / Construction",
-          "site": "normandy-clim.com",
-          "ville": "Sotteville-lès-Rouen",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/normandy-clim",
-          "score": 18,
-          "address": null
-        },
-        {
-          "nom": "SPHA",
-          "niche": "BTP / Construction",
-          "site": "spha.fr",
-          "ville": "Sotteville-lès-Rouen",
+          "site": "cuiller.fr",
+          "ville": "Petit-Couronne",
           "ca": "10M-25M",
           "effectif": "51-200",
           "secteur": "Construction",
-          "description": "Reactivite, Professionnalisme et qualite des prestations sont les maitres mots de notre activite. Implantes a Sotteville-Les-Rouen depuis 2008, nous assurons la realisation dinterventions de depannage",
-          "linkedin": "https://www.linkedin.com/company/spha",
+          "description": "CUILLER FRERES est un acteur historique de la construction bois ,de la charpente et de la menuiserie.",
+          "linkedin": "https://www.linkedin.com/company/cuiller-freres",
           "score": 42,
           "address": null
         },
         {
-          "nom": "Trianon Transatlantique",
-          "niche": "Restauration",
-          "site": "trianontransatlantique.com",
-          "ville": "Sotteville-lès-Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/trianon-transatlantique",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "Tonton Tantie Pizza",
-          "niche": "Restauration",
-          "site": "tontontantiepizza.fr",
-          "ville": "Sotteville-lès-Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/tonton-tantie-pizza",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "La Petite Adresserouen",
-          "niche": "Restauration",
-          "site": "lapetiteadresserouen.fr",
-          "ville": "Sotteville-lès-Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/la-petite-adresserouen",
-          "score": 12,
-          "address": null
-        },
-        {
-          "nom": "MAMA'S Steakhouse",
-          "niche": "Restauration",
-          "site": "mamasteakhouse.com",
-          "ville": "Sotteville-lès-Rouen",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Full-Service Restaurants",
-          "description": "",
-          "linkedin": "",
-          "score": 10,
-          "address": null
-        }
-      ]
-    },
-    {
-      "id": 15,
-      "zone": "Sud (Couronne/Oissel/Elbeuf/Val-de-Reuil)",
-      "villes": [
-        "Oissel",
-        "Tourville-la-Rivière",
-        "Criquebeuf-sur-Seine",
-        "Saint-Aubin-lès-Elbeuf",
-        "Elbeuf",
-        "Grand-Couronne",
-        "Petit-Couronne",
-        "Val-de-Reuil"
-      ],
-      "routeKm": 45.1,
-      "prospects": [
-        {
-          "nom": "Xavier Laudrel Traiteur",
-          "niche": "Restauration",
-          "site": "xavier-laudrel-traiteur.eatbu.com",
-          "ville": "Oissel",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/xavier-laudrel-traiteur",
-          "score": 10,
-          "address": null
-        },
-        {
-          "nom": "Food Land",
-          "niche": "Restauration",
-          "site": "foodland.fr",
-          "ville": "Oissel",
-          "ca": "0-500K",
-          "effectif": "1-10",
-          "secteur": "Limited-Service Restaurants",
-          "description": "",
-          "linkedin": "",
-          "score": 10,
-          "address": null
-        },
-        {
-          "nom": "3 brasseurs Tourville-la-rivière",
-          "niche": "Restauration",
-          "site": "3brasseurs.com",
-          "ville": "Tourville-la-Rivière",
+          "nom": "EFFIDIAG SERVICE",
+          "niche": "BTP / Construction",
+          "site": "effidiagservice.com",
+          "ville": "Petit-Couronne",
           "ca": "500K-1M",
-          "effectif": "11-50",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "Les 3 Brasseurs Tourville-la-riviere est un restaurant specialisee dans la microbrasserie qui fabrique sur place sa propre biere.. Le restaurant propose une cuisine a base de specialites typiques des",
-          "linkedin": "https://www.linkedin.com/company/3-brasseurs-tourville-la-rivi%c3%a8re",
-          "score": 23,
-          "address": null
-        },
-        {
-          "nom": "Caporal Paella",
-          "niche": "Restauration",
-          "site": "caporalpaella.eatbu.com",
-          "ville": "Tourville-la-Rivière",
-          "ca": "0-500K",
           "effectif": "1-10",
-          "secteur": "Restaurants and Other Eating Places",
-          "description": "",
-          "linkedin": "https://www.linkedin.com/company/caporal-paella",
-          "score": 10,
-          "address": null
-        },
-        {
-          "nom": "EV CHARPENTE MENUISERIE",
-          "niche": "BTP / Construction",
-          "site": "ev-charpente-couverture.fr",
-          "ville": "Criquebeuf-sur-Seine",
-          "ca": "1M-5M",
-          "effectif": "11-50",
           "secteur": "Construction",
-          "description": "Fort de plus de 15 annees dexperience, Vincent HUE - fondateur et gerant de lentreprise forme aux Compagnons du Devoir - est entoure dune equipe de professionnels qualifies (charpentier, menuisier). N",
-          "linkedin": "https://www.linkedin.com/company/ev-charpente-menuiserie",
-          "score": 29,
-          "address": null
-        },
-        {
-          "nom": "Cogelec",
-          "niche": "BTP / Construction",
-          "site": "cogelec.net",
-          "ville": "Saint-Aubin-lès-Elbeuf",
-          "ca": "10M-25M",
-          "effectif": "51-200",
-          "secteur": "Construction",
-          "description": "Cogelec est une entreprise d'installation electrique dans le secteur du Batiment. Elle est basee a Saint Aubin les Elbeuf dans la Metropole Rouen Normandie. Ses equipes interviennent dans l'Habitat, l",
-          "linkedin": "https://www.linkedin.com/company/cogelec",
-          "score": 42,
-          "address": null
-        },
-        {
-          "nom": "Miroiterie Uni-Verre",
-          "niche": "BTP / Construction",
-          "site": "miroiterie-uni-verre.fr",
-          "ville": "Elbeuf",
-          "ca": "1M-5M",
-          "effectif": "11-50",
-          "secteur": "Construction",
-          "description": "MIROITERIE UNI VERRE is a construction company based out of 1 T RUE JEAN JAURES, ELBEUF, France.",
-          "linkedin": "https://www.linkedin.com/company/miroiterie-uni-verre",
-          "score": 29,
+          "description": "EFFIDIAG SERVICE a ete creer en 2010 par Marc Heleine. Le cabinet realise notamment les diagnostics immobiliers obligatoires pour la vente et la location des biens immobiliers. Aujourd'hui composee d'",
+          "linkedin": "https://www.linkedin.com/company/effidiagservice",
+          "score": 19,
           "address": null
         },
         {
@@ -2093,42 +1660,55 @@
           "address": null
         },
         {
-          "nom": "CUILLER FRERES",
+          "nom": "Xavier Laudrel Traiteur",
+          "niche": "Restauration",
+          "site": "xavier-laudrel-traiteur.eatbu.com",
+          "ville": "Oissel",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/xavier-laudrel-traiteur",
+          "score": 10,
+          "address": null
+        },
+        {
+          "nom": "Caporal Paella",
+          "niche": "Restauration",
+          "site": "caporalpaella.eatbu.com",
+          "ville": "Tourville-la-Rivière",
+          "ca": "0-500K",
+          "effectif": "1-10",
+          "secteur": "Restaurants and Other Eating Places",
+          "description": "",
+          "linkedin": "https://www.linkedin.com/company/caporal-paella",
+          "score": 10,
+          "address": null
+        },
+        {
+          "nom": "Cogelec",
           "niche": "BTP / Construction",
-          "site": "cuiller.fr",
-          "ville": "Petit-Couronne",
+          "site": "cogelec.net",
+          "ville": "Saint-Aubin-lès-Elbeuf",
           "ca": "10M-25M",
           "effectif": "51-200",
           "secteur": "Construction",
-          "description": "CUILLER FRERES est un acteur historique de la construction bois ,de la charpente et de la menuiserie.",
-          "linkedin": "https://www.linkedin.com/company/cuiller-freres",
+          "description": "Cogelec est une entreprise d'installation electrique dans le secteur du Batiment. Elle est basee a Saint Aubin les Elbeuf dans la Metropole Rouen Normandie. Ses equipes interviennent dans l'Habitat, l",
+          "linkedin": "https://www.linkedin.com/company/cogelec",
           "score": 42,
           "address": null
         },
         {
-          "nom": "EFFIDIAG SERVICE",
+          "nom": "Miroiterie Uni-Verre",
           "niche": "BTP / Construction",
-          "site": "effidiagservice.com",
-          "ville": "Petit-Couronne",
-          "ca": "500K-1M",
-          "effectif": "1-10",
+          "site": "miroiterie-uni-verre.fr",
+          "ville": "Elbeuf",
+          "ca": "1M-5M",
+          "effectif": "11-50",
           "secteur": "Construction",
-          "description": "EFFIDIAG SERVICE a ete creer en 2010 par Marc Heleine. Le cabinet realise notamment les diagnostics immobiliers obligatoires pour la vente et la location des biens immobiliers. Aujourd'hui composee d'",
-          "linkedin": "https://www.linkedin.com/company/effidiagservice",
-          "score": 19,
-          "address": null
-        },
-        {
-          "nom": "JMV CUISINES",
-          "niche": "BTP / Construction",
-          "site": "jmvcuisines.fr",
-          "ville": "Val-de-Reuil",
-          "ca": "500K-1M",
-          "effectif": "1-10",
-          "secteur": "Construction",
-          "description": "JMV CUISINES is a construction company based out of RUE DE LA FORET, Val De Reuil, Normandie, France.",
-          "linkedin": "https://www.linkedin.com/company/jmv-cuisines",
-          "score": 19,
+          "description": "MIROITERIE UNI VERRE is a construction company based out of 1 T RUE JEAN JAURES, ELBEUF, France.",
+          "linkedin": "https://www.linkedin.com/company/miroiterie-uni-verre",
+          "score": 29,
           "address": null
         }
       ]

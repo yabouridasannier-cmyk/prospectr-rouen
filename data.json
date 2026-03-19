@@ -23,7 +23,7 @@
           "linkedin": "https://www.linkedin.com/company/ravexp",
           "score": 29,
           "address": null,
-          "audit_verdict": "GARDER",
+          "audit_verdict": "DOUTE",
           "audit_qualite_site": "correct",
           "audit_raison": "Site WordPress/BuildPress fonctionnel mais design daté (début 2010s), mobile perfectible. Bon contenu (portfolio 30+ projets, certifications RGE Qualibat) mais refonte visuelle nécessaire.",
           "effectif_precis": "6 salariés",
@@ -34,7 +34,23 @@
           "adresse": "8 rue Gaspard Monge, 76300 Sotteville-lès-Rouen",
           "enrichment_notes": "CA confidentiel. Résultat net 2023: 31K€. Groupe KAYA HOLDING.",
           "contact_nom": "Florence Nos",
-          "contact_role": "Collaboratrice (commercial/assistanat)"
+          "contact_role": "Collaboratrice (commercial/assistanat)",
+          "audit_score": 6,
+          "audit_note": "Site avec bons éléments (SSL, CTA, responsive partiel) mais CSS mal optimisé, aucun GMB visible, lazy loading désactivé. Design vieillissant. Opportunité de modernisation réelle.",
+          "audit_points_faibles": [
+            "CSS surchargé",
+            "Lazy loading désactivé",
+            "Aucun GMB visible",
+            "Réseaux sociaux en footer uniquement",
+            "Design vieillissant"
+          ],
+          "audit_points_forts": [
+            "SSL actif",
+            "CTA clairs (Devis, Contact)",
+            "Adresse et téléphone visibles",
+            "Facebook et Instagram",
+            "Section actualités"
+          ]
         },
         {
           "nom": "GODEFROY FILS",
@@ -58,7 +74,23 @@
           "dirigeant": "Stéphane Godefroy",
           "contact_source": "societe.com",
           "adresse": "15 rue Méridienne, 76300 Sotteville-lès-Rouen",
-          "enrichment_notes": "CA 1.37M€ (2015). Comptes récents confidentiels. Résultat net 2024: -64K€. Entreprise familiale depuis 1966."
+          "enrichment_notes": "CA 1.37M€ (2015). Comptes récents confidentiels. Résultat net 2024: -64K€. Entreprise familiale depuis 1966.",
+          "audit_score": 4,
+          "audit_note": "Site fonctionnel mais fortement vieillissant : design plat, responsive incomplet, aucun blog, SSL non confirmé, présence sociale minimaliste. Opportunité de refonte claire.",
+          "audit_points_faibles": [
+            "Design daté",
+            "Responsive incomplet",
+            "SSL non confirmé",
+            "Aucun blog",
+            "Un seul réseau social (Facebook)",
+            "Aucun GMB"
+          ],
+          "audit_points_forts": [
+            "Adresse complète + coordonnées GPS",
+            "Téléphone cliquable",
+            "Zone intervention listée",
+            "CTA présents"
+          ]
         },
         {
           "nom": "MENUISOL",
@@ -74,7 +106,26 @@
           "dirigeant": "M. Monprofit",
           "contact_source": "site web",
           "adresse": "4 rue Eugène Delaville, 76300 Sotteville-lès-Rouen",
-          "ca_precis": "556 K€"
+          "ca_precis": "556 K€",
+          "audit_score": 4,
+          "audit_note": "Site daté (2015-2017), erreurs PHP visibles en prod, Revolution Slider gourmand, aucun blog, mention COVID-2020 toujours en ligne. Dette technique importante — cible idéale pour refonte.",
+          "audit_points_faibles": [
+            "Design vieillissant 2015-2017",
+            "Erreurs PHP en production",
+            "Revolution Slider — vitesse dégradée",
+            "Aucun blog",
+            "Mention COVID-2020 toujours affichée",
+            "Aucun GMB",
+            "Pas de lazy loading"
+          ],
+          "audit_points_forts": [
+            "SSL actif",
+            "SEO local solide",
+            "Schema JSON-LD structuré",
+            "CTA présents (Devis gratuit)",
+            "Certification Qualibat",
+            "Portfolio réalisations"
+          ]
         },
         {
           "nom": "Esclim",
@@ -94,7 +145,24 @@
           "contact_nom": "Jérôme Duval",
           "contact_role": "DG",
           "contact_source": "societe.com",
-          "adresse": "45 av Robert Hooke, 76800 Saint-Étienne-du-Rouvray"
+          "adresse": "45 av Robert Hooke, 76800 Saint-Étienne-du-Rouvray",
+          "audit_score": 5,
+          "audit_note": "Site fonctionnel mais vieillot, palette couleur obsolète. CTA peu percutants. Aucun blog, faible SEO local, présence sociale quasi inexistante (Facebook uniquement).",
+          "audit_points_faibles": [
+            "Design vieillot",
+            "Adresse physique absente",
+            "Aucun GMB",
+            "Pas de blog",
+            "Facebook uniquement",
+            "CTA peu visibles",
+            "JS inline excessif"
+          ],
+          "audit_points_forts": [
+            "SSL actif",
+            "Responsive avec media queries",
+            "Lazy loading détecté",
+            "Zone géographique mentionnée"
+          ]
         },
         {
           "nom": "GRANULYS",
@@ -120,7 +188,23 @@
           "contact_source": "societe.com / annuaire-entreprises",
           "adresse": "27A avenue Jean Jaurès, 76140 Le Petit-Quevilly",
           "enrichment_notes": "CA confidentiel (<700K€). Certifié RGE Qualibois.",
-          "ca_precis": "< 700 K€"
+          "ca_precis": "< 700 K€",
+          "audit_score": 3,
+          "audit_note": "Site très vieillot (années 2010), dégradés CSS obsolètes, aucun réseau social, images non optimisées. CTA insuffisants. Aucune présence sociale.",
+          "audit_points_faibles": [
+            "Design très daté (dégradés CSS)",
+            "Images non optimisées (pas WebP, pas lazy)",
+            "Aucun réseau social",
+            "CTA trop discrets",
+            "Pas de blog",
+            "SSL non confirmé",
+            "Responsive insuffisant mobile"
+          ],
+          "audit_points_forts": [
+            "Adresse physique visible",
+            "Zones géographiques citées",
+            "Contenu informatif produits"
+          ]
         },
         {
           "nom": "Restaurant Les Capucines",
@@ -146,7 +230,23 @@
           "contact_role": "Chef cuisinier / co-dirigeant",
           "contact_source": "les-capucines.com / societe.com",
           "adresse": "16 rue Jean Macé, 76140 Le Petit-Quevilly",
-          "enrichment_notes": "CA 730K€ (2017). Restaurant gastronomique familial, 3 générations. #1 TripAdvisor au Petit-Quevilly."
+          "enrichment_notes": "CA 730K€ (2017). Restaurant gastronomique familial, 3 générations. #1 TripAdvisor au Petit-Quevilly.",
+          "audit_score": 5,
+          "audit_note": "Site techniquement moderne (thème Astra, responsive, SSL) mais lacunaire pour un restaurant : aucune adresse visible, pas de téléphone, pas de CTA de réservation, aucun réseau social, pas de SEO local.",
+          "audit_points_faibles": [
+            "Adresse physique absente",
+            "Pas de CTA de réservation",
+            "Aucun réseau social",
+            "Pas de SEO local (pas de GMB)",
+            "Pas de blog",
+            "Téléphone non détecté"
+          ],
+          "audit_points_forts": [
+            "SSL actif",
+            "Design moderne (thème Astra)",
+            "Entièrement responsive",
+            "Images optimisées"
+          ]
         },
         {
           "nom": "DaliRénovation",
@@ -171,7 +271,14 @@
           "contact_role": "Gérante",
           "contact_source": "societe.com / pagesjaunes.fr",
           "adresse": "6 rue Toussaint Ducy, 76140 Le Petit-Quevilly",
-          "enrichment_notes": "Agence secondaire: 29 quai de Paris, 76000 Rouen. Tél: 06 63 72 97 20."
+          "enrichment_notes": "Agence secondaire: 29 quai de Paris, 76000 Rouen. Tél: 06 63 72 97 20.",
+          "audit_score": 1,
+          "audit_note": "Aucun site web — opportunité maximale de création. Totalement invisible en ligne.",
+          "audit_points_faibles": [
+            "Aucun site web",
+            "Zéro présence digitale"
+          ],
+          "audit_points_forts": []
         },
         {
           "nom": "BATIMEXPERT",
@@ -185,7 +292,7 @@
           "linkedin": "https://www.linkedin.com/company/batimexpert",
           "score": 19,
           "address": null,
-          "audit_verdict": "GARDER",
+          "audit_verdict": "SUPPRIMER",
           "audit_qualite_site": "bon",
           "audit_raison": "Site custom (Jalis) correct avec design pro et certifications OPQIBI, 30 ans d'expérience. Mais patterns JS datés. Amélioration SEO et refonte légère possibles.",
           "ca_precis": "224K€",
@@ -197,7 +304,23 @@
           "contact_role": "Coordonnateur SPS / OPC",
           "contact_source": "batimexpert.com / LinkedIn",
           "adresse": "8 avenue Paul Delorme, 76120 Le Grand-Quevilly",
-          "enrichment_notes": "CA ~224K€ (ancien bilan). Ingénierie, coordination OPC/SPS, diagnostics."
+          "enrichment_notes": "CA ~224K€ (ancien bilan). Ingénierie, coordination OPC/SPS, diagnostics.",
+          "audit_score": 8,
+          "audit_note": "Site professionnel solide : excellent SEO local, CTA multiples, contenu riche, images WebP via CDN, JSON-LD complet. Peu de levier de vente refonte.",
+          "audit_points_faibles": [
+            "Responsive partiel mobile",
+            "Performance JS lourde",
+            "Réseaux sociaux peu animés",
+            "Pas de blog éditorial"
+          ],
+          "audit_points_forts": [
+            "SSL actif",
+            "SEO local exemplaire — JSON-LD complet",
+            "CTA nombreux et clairs",
+            "Images CDN WebP + lazy-load",
+            "Contenu riche (études de cas, FAQ, biographies)",
+            "Design sobre et professionnel"
+          ]
         },
         {
           "nom": "La Table de Sacha",
@@ -211,7 +334,7 @@
           "linkedin": "",
           "score": 10,
           "address": null,
-          "audit_verdict": "GARDER",
+          "audit_verdict": "DOUTE",
           "audit_qualite_site": "correct",
           "audit_raison": "Site Wix template. Fonctionnel mais limité par la plateforme. Restaurant actif. Proposition de vrai site sur mesure pertinente.",
           "forme_juridique": "SARL",
@@ -221,7 +344,22 @@
           "adresse": "11 allée des Arcades, 76120 Le Grand-Quevilly",
           "enrichment_notes": "Dénomination: CHARLIOT. Bistronomique, menus 21-25€. #3 TripAdvisor au Grand-Quevilly.",
           "ca_precis": "200-300 K€",
-          "audit_note": "Deux sites Wix (restaurant + salle de réunion L'Appart by Sacha). Très bon potentiel de refonte/unification de marque + SEO local."
+          "audit_note": "Site Wix moderne et mobile-optimisé avec bon SEO local structuré. Mais absence totale de blog, réseaux sociaux non liés, pas de GMB visible, contenu très minimaliste. Sous-exploité commercialement.",
+          "audit_score": 6,
+          "audit_points_faibles": [
+            "Aucun blog",
+            "Réseaux sociaux non liés",
+            "Pas de GMB visible",
+            "Site full JS/Wix — indexation difficile",
+            "Plateforme Wix — limitations SEO"
+          ],
+          "audit_points_forts": [
+            "SSL actif",
+            "Design moderne",
+            "Excellente optimisation mobile",
+            "SEO local structuré (JSON-LD adresse + horaires)",
+            "Réservations en ligne"
+          ]
         },
         {
           "nom": "Les Mains Vertes",
@@ -247,7 +385,14 @@
           "contact_role": "Fondateur / ancien gérant",
           "contact_source": "societe.com / pappers.fr",
           "adresse": "17 rue Clément Ader, 76120 Le Grand-Quevilly",
-          "enrichment_notes": "CA 2023: 919K€. Résultat net 2022: 143K€. Tél: 02 35 69 82 28."
+          "enrichment_notes": "CA 2023: 919K€. Résultat net 2022: 143K€. Tél: 02 35 69 82 28.",
+          "audit_score": 1,
+          "audit_note": "Aucun site web détecté — opportunité maximale. Invisible en ligne.",
+          "audit_points_faibles": [
+            "Aucun site web",
+            "Zéro présence digitale"
+          ],
+          "audit_points_forts": []
         },
         {
           "nom": "Bulle'Dog Toilettage",
@@ -262,7 +407,25 @@
           "audit_raison": "Site principal HS + Google Sites en secours. 25 ans d'activité, certifié zoocosmétologie.",
           "dirigeant": "Céline",
           "contact_source": "Google Sites",
-          "adresse": "27 Mail des Arcades, 76120 Le Grand-Quevilly"
+          "adresse": "27 Mail des Arcades, 76120 Le Grand-Quevilly",
+          "audit_score": 4,
+          "audit_note": "Site Google Sites — technologie basique, design vieillissant, contenu statique. Pas de blog, pas d Instagram, pas de GMB. Prise de RDV ClicRDV seul point fort. Fort potentiel de refonte.",
+          "audit_points_faibles": [
+            "Google Sites : plateforme amateur",
+            "Design vieillissant",
+            "Aucun blog",
+            "Pas d Instagram/TikTok",
+            "Pas de GMB",
+            "CTA peu mis en valeur",
+            "Images peu optimisées"
+          ],
+          "audit_points_forts": [
+            "Prise de RDV en ligne (ClicRDV)",
+            "Téléphone et email visibles",
+            "SSL actif",
+            "Facebook lié",
+            "Responsive techniquement"
+          ]
         }
       ]
     },

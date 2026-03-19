@@ -292,7 +292,7 @@
           "linkedin": "https://www.linkedin.com/company/batimexpert",
           "score": 19,
           "address": null,
-          "audit_verdict": "SUPPRIMER",
+          "audit_verdict": "GARDER",
           "audit_qualite_site": "bon",
           "audit_raison": "Site custom (Jalis) correct avec design pro et certifications OPQIBI, 30 ans d'expérience. Mais patterns JS datés. Amélioration SEO et refonte légère possibles.",
           "ca_precis": "224K€",

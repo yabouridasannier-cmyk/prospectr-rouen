@@ -62,8 +62,10 @@ function scrollTop() { window.scrollTo({ top: 0, behavior: 'instant' }); }
 
 // --- DASHBOARD ---
 function renderDashboard() {
-  const totalP = DATA.sessions.reduce((s, sess) => s + sess.prospects.length, 0);
-  document.getElementById('total-prospects').textContent = totalP;
+  const allP = DATA.sessions.flatMap(s => s.prospects);
+  const totalP = allP.length;
+  const garderCount = allP.filter(p => p.audit_verdict === 'GARDER').length;
+  document.getElementById('total-prospects').textContent = garderCount + '/' + totalP;
   document.getElementById('total-sessions').textContent = DATA.sessions.length;
   document.getElementById('total-done').textContent = countDone();
 
@@ -106,6 +108,8 @@ function renderDashboard() {
 }
 
 // --- SESSION VIEW ---
+let hideSupprimer = false;
+
 function showSession(sess) {
   currentSession = sess;
   currentView = 'session';
@@ -127,20 +131,57 @@ function showSession(sess) {
 
   document.getElementById('session-map-link').href = buildMapsUrl(sess.prospects);
 
+  // Filter toggle
+  const filterBar = document.getElementById('session-filter-bar') || (() => {
+    const bar = document.createElement('div');
+    bar.id = 'session-filter-bar';
+    bar.style.cssText = 'display:flex;gap:8px;padding:0 16px 12px;align-items:center;';
+    document.getElementById('view-session').insertBefore(bar, document.getElementById('prospects-list'));
+    return bar;
+  })();
+
+  const suppCount = sess.prospects.filter(p => p.audit_verdict === 'SUPPRIMER').length;
+  filterBar.innerHTML = `
+    <button id="btn-filter-supprimer" style="
+      padding:6px 12px;border-radius:20px;border:1px solid ${hideSupprimer ? 'rgba(34,197,94,0.4)' : 'rgba(239,68,68,0.3)'};
+      background:${hideSupprimer ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.08)'};
+      color:${hideSupprimer ? '#22c55e' : '#f87171'};font-size:12px;cursor:pointer;white-space:nowrap;
+    ">
+      <i class="fas fa-${hideSupprimer ? 'eye' : 'eye-slash'}"></i>
+      ${hideSupprimer ? 'Afficher tout' : 'Masquer SUPPRIMER (' + suppCount + ')'}
+    </button>
+  `;
+  document.getElementById('btn-filter-supprimer').addEventListener('click', () => {
+    hideSupprimer = !hideSupprimer;
+    showSession(sess);
+  });
+
   const list = document.getElementById('prospects-list');
   list.innerHTML = '';
 
-  sess.prospects.forEach((p, i) => {
+  const verdictStyle = {
+    GARDER: { bg: 'rgba(34,197,94,0.12)', color: '#22c55e', icon: 'fa-check-circle', label: 'GARDER' },
+    SUPPRIMER: { bg: 'rgba(239,68,68,0.1)', color: '#f87171', icon: 'fa-times-circle', label: 'SUPPRIMER' },
+    DOUTE: { bg: 'rgba(251,191,36,0.12)', color: '#fbbf24', icon: 'fa-question-circle', label: 'DOUTE' },
+  };
+
+  let visibleIndex = 0;
+  sess.prospects.forEach((p) => {
+    if (hideSupprimer && p.audit_verdict === 'SUPPRIMER') return;
+
     const done = isDone(p.nom);
     const card = document.createElement('div');
     card.className = 'prospect-card animate-in';
-    card.style.animationDelay = (i * 0.03) + 's';
-    if (done) { card.style.opacity = '0.45'; card.style.borderColor = 'rgba(34,197,94,0.2)'; }
+    card.style.animationDelay = (visibleIndex * 0.03) + 's';
+    visibleIndex++;
 
-    const hasAudit = !!p.audit;
+    if (done) { card.style.opacity = '0.45'; card.style.borderColor = 'rgba(34,197,94,0.2)'; }
+    if (p.audit_verdict === 'SUPPRIMER' && !done) card.style.opacity = '0.6';
+
+    const vs = p.audit_verdict ? verdictStyle[p.audit_verdict] : null;
     card.innerHTML = `
       <div class="prospect-card-header">
-        <div class="prospect-rank" ${done ? 'style="background:var(--green);color:white"' : ''}>${done ? '<i class="fas fa-check"></i>' : (i + 1)}</div>
+        <div class="prospect-rank" ${done ? 'style="background:var(--green);color:white"' : ''}>${done ? '<i class="fas fa-check"></i>' : (visibleIndex)}</div>
         <div class="prospect-main">
           <div class="prospect-name">${p.nom}</div>
           <div class="prospect-niche">${p.niche} — ${p.ville}</div>
@@ -153,7 +194,8 @@ function showSession(sess) {
         <span class="tag tag-ca">${p.ca}</span>
         <span class="tag tag-effectif">${p.effectif}</span>
         ${p.score ? `<span class="tag tag-score">Score ${p.score}</span>` : ''}
-        ${hasAudit ? '<span class="tag" style="background:rgba(168,85,247,0.12);color:#a855f7">Audité</span>' : ''}
+        ${vs ? `<span class="tag" style="background:${vs.bg};color:${vs.color}"><i class="fas ${vs.icon}"></i> ${vs.label}</span>` : ''}
+        ${p.contact_nom || p.dirigeant ? '<span class="tag" style="background:rgba(59,130,246,0.1);color:#60a5fa"><i class="fas fa-user-tie"></i></span>' : ''}
       </div>
     `;
 
@@ -190,33 +232,56 @@ function showProspect(p) {
   const detail = document.getElementById('prospect-detail');
   detail.innerHTML = `
     <div class="detail-hero animate-in">
+      ${p.image_url ? `<div style="width:100%;height:180px;border-radius:var(--radius-sm);overflow:hidden;margin-bottom:14px;background:var(--bg-elevated)">
+        <img src="${p.image_url}" alt="${p.nom}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.style.display='none'">
+      </div>` : ''}
       <h2>${p.nom}</h2>
-      <div class="niche-label"><i class="fas fa-tag"></i> ${p.niche}</div>
+      <div class="niche-label"><i class="fas fa-tag"></i> ${p.niche}${p.forme_juridique ? ' — ' + p.forme_juridique : ''}${p.annee_creation ? ' (depuis ' + p.annee_creation + ')' : ''}</div>
       <div class="detail-tags">
-        <span class="detail-tag tag-ca"><i class="fas fa-chart-line"></i> ${p.ca}</span>
-        <span class="detail-tag tag-effectif"><i class="fas fa-users"></i> ${p.effectif}</span>
+        <span class="detail-tag tag-ca"><i class="fas fa-chart-line"></i> ${p.ca_precis || p.ca}</span>
+        <span class="detail-tag tag-effectif"><i class="fas fa-users"></i> ${p.effectif_precis || p.effectif}</span>
         ${p.score ? `<span class="detail-tag tag-score"><i class="fas fa-star"></i> ${p.score}</span>` : ''}
       </div>
     </div>
 
+    ${p.contact_nom || p.dirigeant ? `<div class="detail-section animate-in" style="animation-delay:0.03s;border:1px solid rgba(59,130,246,0.2);background:rgba(59,130,246,0.04)">
+      <div class="detail-section-title" style="color:var(--accent)"><i class="fas fa-user-tie"></i> Contact identifié</div>
+      ${p.dirigeant ? `<div class="detail-row">
+        <span class="detail-label">Dirigeant</span>
+        <span class="detail-value" style="font-weight:600">${p.dirigeant}</span>
+      </div>` : ''}
+      ${p.contact_nom && p.contact_nom !== p.dirigeant ? `<div class="detail-row">
+        <span class="detail-label">${p.contact_role || 'Contact'}</span>
+        <span class="detail-value" style="font-weight:600">${p.contact_nom}</span>
+      </div>` : ''}
+      ${p.contact_source ? `<div style="margin-top:6px;font-size:11px;color:var(--text-muted)"><i class="fas fa-link" style="margin-right:4px"></i>Source : ${p.contact_source}</div>` : ''}
+    </div>` : ''}
+
     <div class="detail-section animate-in" style="animation-delay:0.04s">
       <div class="detail-section-title"><i class="fas fa-building"></i> Informations</div>
-      <div class="detail-row">
+      ${p.adresse || p.address ? `<div class="detail-row">
+        <span class="detail-label">Adresse</span>
+        <span class="detail-value">${p.adresse || p.address}</span>
+      </div>` : `<div class="detail-row">
         <span class="detail-label">Ville</span>
         <span class="detail-value">${p.ville}</span>
-      </div>
-      ${p.address ? `<div class="detail-row">
-        <span class="detail-label">Adresse</span>
-        <span class="detail-value">${p.address}</span>
-      </div>` : ''}
+      </div>`}
       <div class="detail-row">
-        <span class="detail-label">CA estimé</span>
-        <span class="detail-value">${p.ca}</span>
+        <span class="detail-label">CA</span>
+        <span class="detail-value" style="${p.ca_precis ? 'color:var(--green);font-weight:600' : ''}">${p.ca_precis || p.ca}</span>
       </div>
       <div class="detail-row">
         <span class="detail-label">Effectif</span>
-        <span class="detail-value">${p.effectif}</span>
+        <span class="detail-value" style="${p.effectif_precis ? 'font-weight:600' : ''}">${p.effectif_precis || p.effectif}</span>
       </div>
+      ${p.forme_juridique ? `<div class="detail-row">
+        <span class="detail-label">Forme juridique</span>
+        <span class="detail-value">${p.forme_juridique}</span>
+      </div>` : ''}
+      ${p.annee_creation ? `<div class="detail-row">
+        <span class="detail-label">Création</span>
+        <span class="detail-value">${p.annee_creation}</span>
+      </div>` : ''}
       <div class="detail-row">
         <span class="detail-label">Secteur</span>
         <span class="detail-value">${p.secteur || p.niche}</span>
@@ -231,6 +296,24 @@ function showProspect(p) {
       <div class="detail-section-title"><i class="fas fa-info-circle"></i> Description</div>
       <div class="detail-desc">${p.description}</div>
     </div>` : ''}
+
+    ${p.audit_verdict ? (() => {
+      const verdictConfig = {
+        GARDER: { border: 'rgba(34,197,94,0.25)', bg: 'rgba(34,197,94,0.06)', color: '#22c55e', icon: 'fa-check-circle', label: 'À prospecter' },
+        SUPPRIMER: { border: 'rgba(239,68,68,0.2)', bg: 'rgba(239,68,68,0.05)', color: '#f87171', icon: 'fa-times-circle', label: 'À écarter' },
+        DOUTE: { border: 'rgba(251,191,36,0.25)', bg: 'rgba(251,191,36,0.06)', color: '#fbbf24', icon: 'fa-question-circle', label: 'À vérifier' },
+      };
+      const vc = verdictConfig[p.audit_verdict];
+      const qualiteLabel = { nul: '❌ Nul', basique: '⚠️ Basique', correct: '🟡 Correct', bon: '🟢 Bon', excellent: '✅ Excellent' };
+      return `<div class="detail-section animate-in" style="animation-delay:0.09s;border:1px solid ${vc.border};background:${vc.bg}">
+        <div class="detail-section-title" style="color:${vc.color}"><i class="fas ${vc.icon}"></i> Audit site web — ${vc.label}</div>
+        ${p.audit_qualite_site ? `<div class="detail-row">
+          <span class="detail-label">Qualité site</span>
+          <span class="detail-value">${qualiteLabel[p.audit_qualite_site] || p.audit_qualite_site}</span>
+        </div>` : ''}
+        ${p.audit_raison ? `<div style="margin-top:10px;font-size:13px;line-height:1.55;color:var(--text-muted)">${p.audit_raison}</div>` : ''}
+      </div>`;
+    })() : ''}
 
     ${p.audit ? `<div class="detail-section animate-in" style="animation-delay:0.1s;border:1px solid rgba(239,68,68,0.15)">
       <div class="detail-section-title" style="color:var(--red)"><i class="fas fa-exclamation-triangle"></i> Problèmes identifiés</div>

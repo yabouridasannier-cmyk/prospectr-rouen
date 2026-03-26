@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#0f172a">
-  <title>ProspectR — Prospection Rouen 2026</title>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#fafaf9">
+  <title>ProspectR — Prospection 2026</title>
   <link rel="manifest" href="manifest.json">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -39,11 +39,21 @@
 
       <!-- Dashboard View -->
       <div id="view-dashboard" class="view">
+        <!-- Mode Tabs -->
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="physique">
+            <i class="fas fa-walking" style="margin-right:4px;font-size:11px"></i> Physique
+          </button>
+          <button class="mode-tab" data-mode="salon">
+            <i class="fas fa-handshake" style="margin-right:4px;font-size:11px"></i> Salon
+          </button>
+        </div>
+
         <div class="dashboard-hero">
           <div class="hero-stats">
             <div class="stat-card">
               <span class="stat-number" id="total-prospects">0</span>
-              <span class="stat-label">À prospecter</span>
+              <span class="stat-label">Prospects</span>
             </div>
             <div class="stat-card">
               <span class="stat-number" id="total-sessions">0</span>
@@ -55,7 +65,7 @@
             </div>
           </div>
         </div>
-        <div class="section-title">
+        <div class="section-title" id="section-title-area">
           <h2>Sessions de prospection</h2>
           <p>Organisées par zone géographique</p>
         </div>

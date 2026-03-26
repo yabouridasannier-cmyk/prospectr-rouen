@@ -47,6 +47,15 @@
           <button class="mode-tab" data-mode="salon">
             <i class="fas fa-handshake" style="margin-right:4px;font-size:11px"></i> Salon
           </button>
+          <button class="mode-tab" data-mode="conseils">
+            <i class="fas fa-lightbulb" style="margin-right:4px;font-size:11px"></i> Conseils
+          </button>
+        </div>
+
+        <!-- Search bar (salon mode only) -->
+        <div id="salon-search-bar" class="search-bar hidden">
+          <i class="fas fa-search"></i>
+          <input type="text" id="salon-search-input" placeholder="Rechercher un prospect...">
         </div>
 
         <div class="dashboard-hero">
@@ -87,6 +96,11 @@
       <!-- Prospect Detail View -->
       <div id="view-prospect" class="view hidden">
         <div id="prospect-detail" class="prospect-detail"></div>
+      </div>
+
+      <!-- Conseils View -->
+      <div id="view-conseils" class="view hidden">
+        <div id="conseils-content" class="conseils-content"></div>
       </div>
     </div>
   </div>

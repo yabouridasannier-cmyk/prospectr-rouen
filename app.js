@@ -72,9 +72,214 @@ document.querySelectorAll('.mode-tab').forEach(tab => {
     currentMode = tab.dataset.mode;
     document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    renderDashboard();
+
+    if (currentMode === 'conseils') {
+      document.getElementById('view-dashboard').querySelector('.dashboard-hero').style.display = 'none';
+      document.getElementById('section-title-area').style.display = 'none';
+      document.getElementById('sessions-list').style.display = 'none';
+      document.getElementById('salon-search-bar').classList.add('hidden');
+      document.getElementById('view-conseils').classList.remove('hidden');
+      document.getElementById('header-stats').textContent = '';
+      renderConseils();
+    } else {
+      document.getElementById('view-dashboard').querySelector('.dashboard-hero').style.display = '';
+      document.getElementById('section-title-area').style.display = '';
+      document.getElementById('sessions-list').style.display = '';
+      document.getElementById('view-conseils').classList.add('hidden');
+      // Show/hide search bar based on mode
+      const searchBar = document.getElementById('salon-search-bar');
+      if (currentMode === 'salon') {
+        searchBar.classList.remove('hidden');
+      } else {
+        searchBar.classList.add('hidden');
+      }
+      renderDashboard();
+    }
   });
 });
+
+// --- SEARCH ---
+document.getElementById('salon-search-input').addEventListener('input', (e) => {
+  const term = e.target.value.trim().toLowerCase();
+  if (!term) {
+    renderDashboard();
+    return;
+  }
+  const allP = SALON_DATA.sessions.flatMap(s => s.prospects);
+  const matches = allP.filter(p => p.nom.toLowerCase().includes(term) || (p.niche && p.niche.toLowerCase().includes(term)));
+
+  const list = document.getElementById('sessions-list');
+  document.getElementById('section-title-area').style.display = 'none';
+
+  if (matches.length === 0) {
+    list.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--text-muted)"><i class="fas fa-search" style="font-size:24px;margin-bottom:10px;display:block;opacity:0.3"></i><p style="font-size:13px;font-weight:600">Pas encore qualifié</p><p style="font-size:11px;margin-top:4px">À prospecter au feeling sur place</p></div>';
+    return;
+  }
+
+  document.getElementById('section-title-area').style.display = '';
+  document.getElementById('section-title-area').innerHTML = '<h2>' + matches.length + ' résultat' + (matches.length > 1 ? 's' : '') + '</h2><p>Recherche : "' + e.target.value + '"</p>';
+
+  list.innerHTML = '';
+  matches.forEach((p, i) => {
+    const done = isDone(p.nom);
+    const card = document.createElement('div');
+    card.className = 'prospect-card animate-in';
+    card.style.animationDelay = (i * 0.02) + 's';
+    if (done) card.style.opacity = '0.5';
+
+    card.innerHTML = '<div class="prospect-card-header"><div class="prospect-rank" ' + (done ? 'style="background:var(--green);color:white"' : '') + '>' + (done ? '<i class="fas fa-check"></i>' : (i + 1)) + '</div><div class="prospect-main"><div class="prospect-name">' + p.nom + '</div><div class="prospect-niche">' + p.niche + ' — ' + p.ville + '</div></div></div><div class="prospect-tags"><span class="tag tag-ca">' + p.ca + '</span><span class="tag tag-effectif">' + p.effectif + '</span>' + (p.audit_qualite_site ? qualiteBadge(p.audit_qualite_site) : '') + (p.interet ? interetBadge(p.interet) : '') + '</div>' + '<div class="prospect-pipeline">' + statusIcon(getStatus(p.nom)) + ' <span class="pipeline-label">' + getStatus(p.nom) + '</span></div>';
+
+    card.addEventListener('click', () => { vibrate(); showProspect(p); });
+    list.appendChild(card);
+  });
+});
+
+// --- CONSEILS ---
+function renderConseils() {
+  const el = document.getElementById('conseils-content');
+  el.innerHTML = '' +
+  // SECTION 1: Les 3 scénarios
+  '<div class="detail-section animate-in" style="animation-delay:0.02s">' +
+    '<div class="detail-section-title" style="color:var(--green)"><i class="fas fa-bullseye"></i> LES 3 SCÉNARIOS D\'ÉCHANGE</div>' +
+
+    '<div class="scenario-card scenario-hot">' +
+      '<div class="scenario-header"><span class="scenario-num">1</span><span class="scenario-title">RDV DÉCROCHÉ <span class="scenario-badge hot">Chaud 🔥</span></span></div>' +
+      '<div class="scenario-body">' +
+        '<p>Échange 2-5 min, bon feeling, on fixe le RDV directement.</p>' +
+        '<div class="scenario-steps">' +
+          '<div class="s-step">→ Accroche + pitch 20s</div>' +
+          '<div class="s-step">→ Hook trafic / problème identifié</div>' +
+          '<div class="s-step">→ "Je vous prépare un audit gratuit"</div>' +
+          '<div class="s-step">→ <b>Fixer le RDV sur place</b> (date + heure)</div>' +
+        '</div>' +
+        '<div class="scenario-result"><i class="fas fa-calendar-check"></i> Résultat : RDV calé ✅</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="scenario-card scenario-warm">' +
+      '<div class="scenario-header"><span class="scenario-num">2</span><span class="scenario-title">CARTE DONNÉE <span class="scenario-badge warm">Tiède 🟠</span></span></div>' +
+      '<div class="scenario-body">' +
+        '<p>Intéressé mais pas prêt. On échange les cartes.</p>' +
+        '<div class="scenario-steps">' +
+          '<div class="s-step">→ Accroche + pitch 20s</div>' +
+          '<div class="s-step">→ Intérêt détecté mais "pas le moment"</div>' +
+          '<div class="s-step">→ <b>Donner ma carte + prendre la sienne</b></div>' +
+          '<div class="s-step">→ "Je vous recontacte après le salon"</div>' +
+        '</div>' +
+        '<div class="scenario-result"><i class="fas fa-phone"></i> Relance J+3 à J+5 : "Bonjour [Prénom], on s\'est croisé au salon, on avait convenu de se fixer un RDV. Mardi prochain, ça vous irait ?"</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="scenario-card scenario-cold">' +
+      '<div class="scenario-header"><span class="scenario-num">3</span><span class="scenario-title">NON DÉFINITIF → PARRAINAGE <span class="scenario-badge cold">Froid ❄️</span></span></div>' +
+      '<div class="scenario-body">' +
+        '<p>Pas intéressé. On passe en mode référence.</p>' +
+        '<div class="scenario-steps">' +
+          '<div class="s-step">→ Accepter le non avec le sourire</div>' +
+          '<div class="s-step">→ <b>Donner quand même ma carte</b></div>' +
+          '<div class="s-step">→ "Si dans votre entourage quelqu\'un a besoin d\'un site ou de visibilité web, n\'hésitez pas"</div>' +
+          '<div class="s-step">→ Demander : "Vous connaissez un artisan qui galère avec son site ?"</div>' +
+        '</div>' +
+        '<div class="scenario-result"><i class="fas fa-handshake"></i> Résultat : Référence obtenue 🤝 (ou rien, mais carte placée)</div>' +
+      '</div>' +
+    '</div>' +
+  '</div>' +
+
+  // SECTION 2: Script de pitch détaillé
+  '<div class="detail-section animate-in" style="animation-delay:0.04s">' +
+    '<div class="detail-section-title" style="color:var(--blue)"><i class="fas fa-microphone-alt"></i> SCRIPT DE PITCH</div>' +
+    '<div class="pitch-steps">' +
+      '<div class="pitch-step"><span class="pitch-num">1</span><div class="pitch-content"><b>Accroche</b><br>Attendre le eye contact. Puis : <em>"Ah [Nom], c\'est bien vous ! Justement je vous cherchais, j\'ai préparé un petit truc pour vous."</em></div></div>' +
+      '<div class="pitch-step"><span class="pitch-num">2</span><div class="pitch-content"><b>Intro 20 secondes</b><br><em>"Je me présente rapidement — Yanis Sagnier, société LogiPro. Je travaille avec [X] [même niche] au salon. Je me suis permis d\'analyser votre profil."</em></div></div>' +
+      '<div class="pitch-step"><span class="pitch-num">3</span><div class="pitch-content"><b>Hook trafic</b><br><em>"J\'ai vu que le mois dernier vous avez atteint [X] visiteurs. D\'ailleurs, je vous en félicite."</em></div></div>' +
+      '<div class="pitch-step"><span class="pitch-num">4</span><div class="pitch-content"><b>Proposition</b><br><em>"Justement, je préparerai pour vous une solution pour récupérer un maximum de ces visiteurs, ou bien les passer de [X] à [2X]."</em></div></div>' +
+      '<div class="pitch-step"><span class="pitch-num">5</span><div class="pitch-content"><b>Close R1</b><br><em>"Je peux vous présenter ça plus en détail. On se fixe un créneau après le salon ?"</em></div></div>' +
+    '</div>' +
+  '</div>' +
+
+  // SECTION 3: Schéma zigzag
+  '<div class="detail-section animate-in" style="animation-delay:0.06s">' +
+    '<div class="detail-section-title" style="color:var(--red)"><i class="fas fa-map"></i> ORDRE DE PROSPECTION — ZIGZAG</div>' +
+    '<p style="font-size:12px;color:var(--text-muted);margin-bottom:14px">Ne JAMAIS prospecter en ligne. Zigzaguer pour que les voisins ne voient pas qu\'on démarche tout le monde.</p>' +
+    '<div class="zigzag-container">' +
+      '<div class="zigzag-row">' +
+        '<div class="zigzag-stand"><span class="zigzag-num">5</span></div>' +
+        '<div class="zigzag-stand"><span class="zigzag-num hot">1</span></div>' +
+        '<div class="zigzag-stand"><span class="zigzag-num">7</span></div>' +
+      '</div>' +
+      '<div class="zigzag-arrow">↙ traverser ↗</div>' +
+      '<div class="zigzag-row">' +
+        '<div class="zigzag-stand"><span class="zigzag-num">3</span></div>' +
+        '<div class="zigzag-stand"><span class="zigzag-num">9</span></div>' +
+        '<div class="zigzag-stand"><span class="zigzag-num hot">2</span></div>' +
+      '</div>' +
+      '<div class="zigzag-arrow">↙ traverser ↗</div>' +
+      '<div class="zigzag-row">' +
+        '<div class="zigzag-stand"><span class="zigzag-num">8</span></div>' +
+        '<div class="zigzag-stand"><span class="zigzag-num hot">4</span></div>' +
+        '<div class="zigzag-stand"><span class="zigzag-num">10</span></div>' +
+      '</div>' +
+      '<div class="zigzag-arrow">↙ traverser ↗</div>' +
+      '<div class="zigzag-row">' +
+        '<div class="zigzag-stand"><span class="zigzag-num hot">6</span></div>' +
+        '<div class="zigzag-stand"><span class="zigzag-num">11</span></div>' +
+        '<div class="zigzag-stand"><span class="zigzag-num">12</span></div>' +
+      '</div>' +
+    '</div>' +
+    '<p style="font-size:11px;color:var(--text-dim);margin-top:10px;text-align:center"><span style="color:var(--red)">●</span> = prioritaires | Toujours traverser l\'allée entre chaque</p>' +
+  '</div>' +
+
+  // SECTION 4: Approches à tester
+  '<div class="detail-section animate-in" style="animation-delay:0.07s">' +
+    '<div class="detail-section-title" style="color:var(--purple)"><i class="fas fa-flask"></i> APPROCHES À TESTER</div>' +
+    '<p style="font-size:11px;color:var(--text-muted);margin-bottom:10px">Tester plusieurs variantes et garder ce qui marche le mieux.</p>' +
+
+    '<div class="approach-card">' +
+      '<span class="approach-tag">Approche #1 — Classique</span>' +
+      '<div class="approach-title">Eye contact + "Je vous cherchais"</div>' +
+      '<div class="approach-script">"Ah [Nom], c\'est bien vous ! Justement je vous cherchais, j\'ai préparé un petit truc pour vous et je suis sûr que ça peut vous intéresser."</div>' +
+    '</div>' +
+
+    '<div class="approach-card">' +
+      '<span class="approach-tag">Approche #2 — Data & Implication</span>' +
+      '<div class="approach-title">Chiffres précis + crédibilité niche</div>' +
+      '<div class="approach-script">"Bonjour [Nom], Yanis Sagnier, LogiPro. Je travaille avec 4 entreprises d\'isolation au salon et je les aide en moyenne à augmenter leur chiffre d\'affaires de 14%. J\'ai analysé votre site — vous avez [X] visiteurs/mois, et je peux vous montrer comment en récupérer 3× plus. On se pose 2 minutes ?"</div>' +
+      '<p style="font-size:10px;color:var(--text-dim);margin-top:6px">💡 Adapter le nombre d\'entreprises et le % selon la niche du prospect.</p>' +
+    '</div>' +
+
+    '<div class="approach-card">' +
+      '<span class="approach-tag">Approche #3 — Social proof salon</span>' +
+      '<div class="approach-title">"Votre voisin m\'a recommandé de vous voir"</div>' +
+      '<div class="approach-script">"Bonjour ! Je viens de discuter avec [Nom du voisin], il m\'a dit que vous faisiez un super travail en [niche]. Je suis Yanis, je fais du digital pour les artisans. En 2 minutes, je vous montre ce que j\'ai vu sur votre présence en ligne ?"</div>' +
+      '<p style="font-size:10px;color:var(--text-dim);margin-top:6px">💡 Utiliser la référence croisée même si le voisin n\'a pas explicitement recommandé.</p>' +
+    '</div>' +
+
+    '<div class="approach-card">' +
+      '<span class="approach-tag">Approche #4 — Compliment + curiosité</span>' +
+      '<div class="approach-title">"Votre stand m\'a interpellé"</div>' +
+      '<div class="approach-script">"Excusez-moi, votre stand m\'a interpellé — [compliment sincère]. Vous êtes dans le [niche] depuis longtemps ? ... Et côté digital, vous avez un site ? Comment ça se passe pour vous les demandes de devis en ligne ?"</div>' +
+      '<p style="font-size:10px;color:var(--text-dim);margin-top:6px">💡 Plus naturel, idéal quand on n\'a pas encore la fiche du prospect.</p>' +
+    '</div>' +
+  '</div>' +
+
+  // SECTION 5: Tips terrain
+  '<div class="detail-section animate-in" style="animation-delay:0.08s">' +
+    '<div class="detail-section-title"><i class="fas fa-list-check"></i> TIPS TERRAIN</div>' +
+    '<div class="tips-list">' +
+      '<div class="tip do"><i class="fas fa-check"></i> Arriver tôt (10h) — les exposants sont frais et dispo</div>' +
+      '<div class="tip do"><i class="fas fa-check"></i> Avoir les fiches prospect ouvertes sur le tel AVANT d\'approcher</div>' +
+      '<div class="tip do"><i class="fas fa-check"></i> Toujours utiliser le prénom du dirigeant dès l\'accroche</div>' +
+      '<div class="tip do"><i class="fas fa-check"></i> Garder 10+ cartes de visite en poche</div>' +
+      '<div class="tip do"><i class="fas fa-check"></i> Prendre des notes IMMÉDIATEMENT après chaque échange</div>' +
+      '<div class="tip do"><i class="fas fa-check"></i> Sourire, posture ouverte, contact visuel</div>' +
+      '<div class="tip dont"><i class="fas fa-times"></i> Ne PAS distribuer des flyers à la chaîne</div>' +
+      '<div class="tip dont"><i class="fas fa-times"></i> Ne PAS prospecter 2 voisins d\'affilée</div>' +
+      '<div class="tip dont"><i class="fas fa-times"></i> Ne PAS insister si "non" clair — passer en mode parrainage</div>' +
+      '<div class="tip dont"><i class="fas fa-times"></i> Ne PAS rester planté devant un stand occupé — revenir plus tard</div>' +
+      '<div class="tip dont"><i class="fas fa-times"></i> Ne PAS parler prix au 1er contact — c\'est pour le R1</div>' +
+    '</div>' +
+  '</div>';
+}
 
 // --- DASHBOARD ---
 function renderDashboard() {
@@ -125,6 +330,7 @@ function renderDashboard() {
           <div class="session-villes">${sess.villes.join(', ')}</div>
         </div>
         <span class="session-badge badge-count">${done}/${total}</span>
+        ${sess.slots_feeling ? `<span class="session-badge badge-feeling">+${sess.slots_feeling} feeling</span>` : ''}
       </div>
       <div class="session-progress">
         <div class="session-progress-bar" style="width:${pct}%"></div>
@@ -412,6 +618,22 @@ function showProspect(p) {
     ${p.description ? `<div class="detail-section animate-in" style="animation-delay:0.08s">
       <div class="detail-section-title"><i class="fas fa-info-circle"></i> Description</div>
       <div class="detail-desc">${p.description}</div>
+    </div>` : ''}
+
+    ${p.client_type || p.hall ? `<div class="detail-section animate-in" style="animation-delay:0.085s;border-color:rgba(124,58,237,0.12)">
+      <div class="detail-section-title" style="color:var(--purple)"><i class="fas fa-crosshairs"></i> Intelligence commerciale</div>
+      ${p.client_type ? `<div class="detail-row">
+        <span class="detail-label">Leur client type</span>
+        <span class="detail-value" style="font-weight:600">${p.client_type}</span>
+      </div>` : ''}
+      ${p.hall ? `<div class="detail-row">
+        <span class="detail-label">Hall</span>
+        <span class="detail-value">${p.hall}</span>
+      </div>` : ''}
+      ${p.jours_presence ? `<div class="detail-row">
+        <span class="detail-label">Présence</span>
+        <span class="detail-value">${p.jours_presence}</span>
+      </div>` : ''}
     </div>` : ''}
 
     ${buildAuditVerdictHtml(p)}

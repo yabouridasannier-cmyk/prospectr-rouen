@@ -1,7 +1,7 @@
 const HOME_ADDRESS = '30 Rue Puel-Éloir, Saint-Étienne-du-Rouvray 76800';
 
 let DATA = { sessions: [] };
-let SALON_DATA = { sessions: [] };
+let SALON_DATA = { sessions: [], hall_maps: {} };
 let currentMode = 'physique'; // 'physique' or 'salon'
 let currentView = 'dashboard';
 let currentSession = null;
@@ -381,6 +381,28 @@ function showSession(sess) {
     mapLink.href = buildMapsUrl(sess.prospects);
   }
 
+  // Insert hall map for salon mode Hall 7 sessions
+  const mapContainer = document.getElementById('session-hall-map') || (() => {
+    const div = document.createElement('div');
+    div.id = 'session-hall-map';
+    const headerCard = document.getElementById('session-header-card');
+    headerCard.parentNode.insertBefore(div, headerCard.nextSibling);
+    return div;
+  })();
+  if (currentMode === 'salon' && sess.hall === 'Hall 7') {
+    mapContainer.innerHTML = renderHallMap(sess, null);
+    mapContainer.querySelectorAll('.map-stand-tap').forEach(el => {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', () => {
+        const nom = el.getAttribute('data-nom');
+        const p = sess.prospects.find(pr => pr.nom === nom);
+        if (p) { vibrate(); showProspect(p); }
+      });
+    });
+  } else {
+    mapContainer.innerHTML = '';
+  }
+
   // Filter toggle
   const filterBar = document.getElementById('session-filter-bar') || (() => {
     const bar = document.createElement('div');
@@ -433,26 +455,26 @@ function showSession(sess) {
     if (p.audit_verdict === 'SUPPRIMER' && !done) card.style.opacity = '0.55';
 
     const vs = p.audit_verdict ? verdictStyle[p.audit_verdict] : null;
+    const standCode = p.stand_code || p.stand || '';
+    const dirigeantShort = p.dirigeant && p.dirigeant !== 'À confirmer' ? p.dirigeant.split(' ').pop() : '';
     card.innerHTML = `
-      <div class="prospect-card-header">
+      <div class="prospect-card-header" style="position:relative">
         <div class="prospect-rank" ${done ? 'style="background:var(--green);color:white"' : ''}>${done ? '<i class="fas fa-check"></i>' : visibleIndex}</div>
         <div class="prospect-main">
           <div class="prospect-name">${p.nom}</div>
-          <div class="prospect-niche">${p.niche} — ${p.ville}</div>
+          <div class="prospect-niche">${p.dirigeant ? '<i class="fas fa-user-tie" style="font-size:9px;opacity:0.5"></i> ' + p.dirigeant + ' — ' : ''}${p.niche}</div>
         </div>
+        ${currentMode === 'salon' && standCode ? `<span class="stand-prominent">${standCode}</span>` : ''}
         <button class="prospect-check ${done ? 'done' : ''}" data-nom="${p.nom}">
           <i class="fas fa-check"></i>
         </button>
       </div>
       <div class="prospect-tags">
-        <span class="tag tag-ca">${p.ca}</span>
-        <span class="tag tag-effectif">${p.effectif}</span>
-        ${p.score ? `<span class="tag tag-score">Score ${p.score}</span>` : ''}
-        ${vs ? `<span class="tag" style="background:${vs.bg};color:${vs.color}"><i class="fas ${vs.icon}"></i> ${vs.label}</span>` : ''}
-        ${p.contact_nom || p.dirigeant ? '<span class="tag" style="background:var(--blue-bg);color:var(--blue)"><i class="fas fa-user-tie"></i></span>' : ''}
-        ${p.stand ? `<span class="tag niche-salon"><i class="fas fa-map-pin"></i> ${p.stand}</span>` : ''}
         ${currentMode === 'salon' && p.audit_qualite_site ? qualiteBadge(p.audit_qualite_site) : ''}
         ${currentMode === 'salon' && p.interet ? interetBadge(p.interet) : ''}
+        <span class="tag tag-ca">${p.ca}</span>
+        ${p.score ? `<span class="tag tag-score">Score ${p.score}</span>` : ''}
+        ${vs ? `<span class="tag" style="background:${vs.bg};color:${vs.color}"><i class="fas ${vs.icon}"></i> ${vs.label}</span>` : ''}
       </div>
       ${currentMode === 'salon' ? `<div class="prospect-pipeline">${statusIcon(getStatus(p.nom))} <span class="pipeline-label">${getStatus(p.nom)}</span></div>` : ''}
     `;
@@ -510,21 +532,33 @@ function showProspect(p) {
   const notes = getNotesMap()[p.nom] || '';
   const siteUrl = p.site ? 'https://' + p.site.replace(/^https?:\/\//, '') : '';
 
+  const nextP = getNextProspect(currentSession, p);
+  const prevP = getPrevProspect(currentSession, p);
+  const standCode = p.stand_code || p.stand || '';
+  const direction = getStandDirection(p);
+
   const detail = document.getElementById('prospect-detail');
   detail.innerHTML = `
-    <div class="detail-hero animate-in">
-      ${p.image_url ? `<div style="width:100%;height:160px;border-radius:var(--radius-sm);overflow:hidden;margin-bottom:14px;background:var(--bg-elevated)">
-        <img src="${p.image_url}" alt="${p.nom}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.style.display='none'">
-      </div>` : ''}
+    ${currentMode === 'salon' && standCode.startsWith('H7') ? `<div class="animate-in">${renderHallMap(currentSession, p.nom)}</div>` : ''}
+
+    <div class="detail-hero animate-in" style="position:relative">
+      ${standCode ? `<div class="stand-hero-badge">${standCode}</div>` : ''}
+      ${direction ? `<div class="stand-direction"><i class="fas fa-location-arrow"></i> ${direction}</div>` : ''}
       <h2>${p.nom}</h2>
-      <div class="niche-label"><i class="fas fa-tag"></i> ${p.niche}${p.forme_juridique ? ' — ' + p.forme_juridique : ''}${p.annee_creation ? ' (depuis ' + p.annee_creation + ')' : ''}</div>
-      <div class="detail-tags">
+      ${p.dirigeant ? `<div class="briefing-dirigeant">${p.dirigeant === 'À confirmer' ? '<span style="color:var(--orange)"><i class="fas fa-exclamation-triangle"></i> Dirigeant à confirmer</span>' : '<i class="fas fa-user-tie" style="opacity:0.4;margin-right:4px"></i>' + p.dirigeant}</div>` : ''}
+      ${p.angle_approche ? `<div class="briefing-angle"><i class="fas fa-quote-left" style="opacity:0.3;margin-right:6px"></i>${p.angle_approche}</div>` : ''}
+      <div class="detail-tags" style="margin-top:10px">
+        ${p.audit_qualite_site ? qualiteBadge(p.audit_qualite_site) : ''}
+        ${p.interet ? interetBadge(p.interet) : ''}
         <span class="detail-tag tag-ca"><i class="fas fa-chart-line"></i> ${p.ca_precis || p.ca}</span>
-        <span class="detail-tag tag-effectif"><i class="fas fa-users"></i> ${p.effectif_precis || p.effectif}</span>
-        ${p.score ? `<span class="detail-tag tag-score"><i class="fas fa-star"></i> ${p.score}</span>` : ''}
-        ${p.stand ? `<span class="detail-tag niche-salon"><i class="fas fa-map-pin"></i> Stand ${p.stand}</span>` : ''}
+        ${p.annee_creation ? `<span class="detail-tag" style="background:var(--bg-elevated);color:var(--text-muted)">Depuis ${p.annee_creation}</span>` : ''}
       </div>
     </div>
+
+    ${nextP || prevP ? `<div class="walk-nav animate-in" style="animation-delay:0.02s">
+      ${prevP ? `<button class="walk-nav-btn walk-prev" id="btn-walk-prev"><i class="fas fa-arrow-left"></i> ${prevP.nom.substring(0,15)}${prevP.nom.length > 15 ? '...' : ''}<br><small>${prevP.stand_code || prevP.stand || ''}</small></button>` : '<div></div>'}
+      ${nextP ? `<button class="walk-nav-btn walk-next" id="btn-walk-next">${nextP.nom.substring(0,15)}${nextP.nom.length > 15 ? '...' : ''} <i class="fas fa-arrow-right"></i><br><small>${nextP.stand_code || nextP.stand || ''}</small></button>` : '<div></div>'}
+    </div>` : ''}
 
     ${p.contact_nom || p.dirigeant ? `<div class="detail-section animate-in" style="animation-delay:0.03s;border-color:rgba(37,99,235,0.15);">
       <div class="detail-section-title" style="color:var(--blue)"><i class="fas fa-user-tie"></i> Contact identifié</div>
@@ -743,6 +777,26 @@ function showProspect(p) {
       showProspect(p);
     });
   }
+
+  // Walk navigation (prev/next)
+  const btnPrev = document.getElementById('btn-walk-prev');
+  if (btnPrev && prevP) {
+    btnPrev.addEventListener('click', () => { vibrate(); showProspect(prevP); });
+  }
+  const btnNext = document.getElementById('btn-walk-next');
+  if (btnNext && nextP) {
+    btnNext.addEventListener('click', () => { vibrate(); showProspect(nextP); });
+  }
+
+  // Map stand taps in prospect detail
+  detail.querySelectorAll('.map-stand-tap').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () => {
+      const nom = el.getAttribute('data-nom');
+      const pr = currentSession ? currentSession.prospects.find(x => x.nom === nom) : null;
+      if (pr) { vibrate(); showProspect(pr); }
+    });
+  });
 }
 
 // --- NAVIGATION ---
@@ -909,6 +963,102 @@ function interetBadge(i) {
   if (i === 'Moyen') return '<span class="badge-interet badge-moyen">Moyen</span>';
   if (i === 'Faible') return '<span class="badge-interet badge-faible">Faible</span>';
   return '';
+}
+
+// --- GPS / HALL MAP FUNCTIONS ---
+function parseStandCode(code) {
+  if (!code) return null;
+  const m = code.match(/^H(\d+)([ABC])(\d+)/);
+  if (!m) return null;
+  return { hall: parseInt(m[1]), row: m[2], num: parseInt(m[3]) };
+}
+
+function getStandDirection(p) {
+  const parsed = parseStandCode(p.stand_code || p.stand);
+  if (!parsed || parsed.hall !== 7) return '';
+  const rowLabel = { A: 'Rangée haute', B: 'Rangée milieu', C: 'Rangée basse' }[parsed.row] || '';
+  const side = parsed.num <= 8 ? 'Côté gauche (entrée Hall 5)' : parsed.num <= 15 ? 'Zone centrale' : 'Côté droit (vers Hall 8)';
+  const dist = Math.round(parsed.num * 2.5);
+  return rowLabel + ' — ' + side + ' (~' + dist + 'm de l\'entrée)';
+}
+
+function getNextProspect(session, currentP) {
+  if (!session || !session.prospects) return null;
+  const idx = session.prospects.findIndex(p => p.nom === currentP.nom);
+  return idx >= 0 && idx < session.prospects.length - 1 ? session.prospects[idx + 1] : null;
+}
+
+function getPrevProspect(session, currentP) {
+  if (!session || !session.prospects) return null;
+  const idx = session.prospects.findIndex(p => p.nom === currentP.nom);
+  return idx > 0 ? session.prospects[idx - 1] : null;
+}
+
+function renderHallMap(session, highlightNom) {
+  const hallMaps = SALON_DATA.hall_maps;
+  if (!hallMaps || !hallMaps['Hall 7']) return '';
+  const map = hallMaps['Hall 7'];
+  const stands = map.stands;
+  if (!stands) return '';
+
+  // Build prospect lookup by stand
+  const prospectByStand = {};
+  if (session) {
+    session.prospects.forEach(p => {
+      const sc = p.stand_code || p.stand;
+      if (sc) prospectByStand[sc] = p;
+    });
+  }
+
+  let svg = '<svg viewBox="0 0 100 50" class="hall-map-svg" xmlns="http://www.w3.org/2000/svg">';
+  // Background
+  svg += '<rect x="0" y="0" width="100" height="50" rx="2" fill="#f5f5f4" stroke="#e7e5e4" stroke-width="0.3"/>';
+  // Hall label
+  svg += '<text x="50" y="4" text-anchor="middle" font-size="2.5" fill="#a8a29e" font-weight="600" font-family="Inter,sans-serif">HALL 7 — Amélioration de l\'Habitat</text>';
+  // Entry/Exit labels
+  svg += '<text x="1" y="25" font-size="1.8" fill="#a8a29e" font-family="Inter,sans-serif">← Hall 5</text>';
+  svg += '<text x="92" y="25" font-size="1.8" fill="#a8a29e" font-family="Inter,sans-serif">Hall 8 →</text>';
+
+  // Draw stands
+  Object.entries(stands).forEach(([code, pos]) => {
+    const x = pos.x * 92 + 4;
+    const y = pos.y * 42 + 5;
+    const w = pos.w * 92;
+    const h = pos.h * 42;
+    const prospect = prospectByStand[code];
+    const isHighlighted = prospect && prospect.nom === highlightNom;
+    const prospectDone = prospect && isDone(prospect.nom);
+
+    let fill = '#e7e5e4'; // default (not a prospect)
+    let stroke = '#d6d3d1';
+    let strokeW = '0.2';
+
+    if (prospect) {
+      if (prospectDone) {
+        fill = '#dcfce7'; stroke = '#16a34a'; strokeW = '0.3';
+      } else if (prospect.audit_qualite_site === 'nul') {
+        fill = '#fef2f2'; stroke = '#dc2626'; strokeW = '0.3';
+      } else if (prospect.audit_qualite_site === 'basique') {
+        fill = '#fffbeb'; stroke = '#d97706'; strokeW = '0.3';
+      } else {
+        fill = '#eff6ff'; stroke = '#2563eb'; strokeW = '0.3';
+      }
+    }
+
+    if (isHighlighted) {
+      fill = '#18181b'; stroke = '#18181b'; strokeW = '0.5';
+    }
+
+    svg += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="0.5" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + strokeW + '"' + (prospect ? ' data-nom="' + prospect.nom.replace(/"/g, '&quot;') + '" class="map-stand-tap"' : '') + (isHighlighted ? ' class="map-stand-active"' : '') + '/>';
+
+    // Stand label
+    const shortCode = code.replace('H7', '').replace('-', '/');
+    const textColor = isHighlighted ? '#fff' : '#78716c';
+    svg += '<text x="' + (x + w/2) + '" y="' + (y + h/2 + 0.8) + '" text-anchor="middle" font-size="1.3" fill="' + textColor + '" font-family="monospace">' + shortCode + '</text>';
+  });
+
+  svg += '</svg>';
+  return '<div class="hall-map-container">' + svg + '<div class="hall-map-legend"><span class="legend-dot" style="background:#fef2f2;border-color:#dc2626"></span>Sans site <span class="legend-dot" style="background:#fffbeb;border-color:#d97706"></span>Basique <span class="legend-dot" style="background:#eff6ff;border-color:#2563eb"></span>Correct <span class="legend-dot" style="background:#dcfce7;border-color:#16a34a"></span>Fait <span class="legend-dot" style="background:#18181b;border-color:#18181b"></span>Actuel</div></div>';
 }
 
 // --- OLD SALON FICTIVE (replaced by salon_data.json) ---

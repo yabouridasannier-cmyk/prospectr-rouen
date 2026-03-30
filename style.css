@@ -454,6 +454,78 @@ body {
 .tip.do { background: var(--green-bg); color: var(--green); }
 .tip.dont { background: var(--red-bg); color: var(--red); }
 
+/* ===== HALL MAP (GPS) ===== */
+.hall-map-container {
+  margin: 0 20px 12px; padding: 12px;
+  background: var(--bg-card); border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.hall-map-svg { width: 100%; height: auto; border-radius: var(--radius-sm); }
+.hall-map-legend {
+  display: flex; gap: 8px; align-items: center; justify-content: center;
+  margin-top: 8px; font-size: 9px; color: var(--text-muted); flex-wrap: wrap;
+}
+.legend-dot {
+  display: inline-block; width: 10px; height: 10px; border-radius: 2px;
+  border: 1px solid; margin-right: 2px; vertical-align: middle;
+}
+.map-stand-active { animation: standPulse 1.2s ease infinite; }
+@keyframes standPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ===== STAND BADGE (prominent on cards) ===== */
+.stand-prominent {
+  position: absolute; top: -2px; right: 34px;
+  padding: 2px 7px; border-radius: 4px;
+  background: rgba(124,58,237,0.08); color: var(--purple);
+  font-weight: 700; font-size: 9px;
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  letter-spacing: 0.3px;
+}
+
+/* ===== BRIEFING HERO (prospect detail) ===== */
+.stand-hero-badge {
+  position: absolute; top: 16px; right: 16px;
+  padding: 6px 12px; border-radius: var(--radius-sm);
+  background: var(--accent); color: white;
+  font-weight: 800; font-size: 14px;
+  font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  letter-spacing: 0.5px;
+}
+.stand-direction {
+  font-size: 11px; color: var(--text-muted); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 4px;
+}
+.stand-direction i { color: var(--purple); font-size: 10px; }
+.briefing-dirigeant {
+  font-size: 17px; font-weight: 600; color: var(--text);
+  margin-top: 6px; letter-spacing: -0.2px;
+}
+.briefing-angle {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.6;
+  padding: 10px 12px; margin-top: 10px;
+  background: var(--bg-elevated); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-left: 3px solid var(--accent);
+}
+
+/* ===== WALK NAVIGATION (prev/next) ===== */
+.walk-nav {
+  display: flex; gap: 6px; margin-bottom: 12px;
+}
+.walk-nav-btn {
+  flex: 1; padding: 10px 12px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--bg-card);
+  font-family: inherit; font-size: 12px; font-weight: 600;
+  color: var(--text-secondary); cursor: pointer;
+  transition: all var(--transition); text-align: center;
+  line-height: 1.3;
+}
+.walk-nav-btn:active { transform: scale(0.97); background: var(--bg-elevated); }
+.walk-nav-btn small { font-size: 10px; color: var(--purple); font-weight: 700; font-family: monospace; }
+.walk-nav-btn i { font-size: 10px; opacity: 0.5; }
+
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }

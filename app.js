@@ -309,6 +309,37 @@ function renderDashboard() {
   const list = document.getElementById('sessions-list');
   list.innerHTML = '';
 
+  // --- Pipeline overview card (salon mode only) ---
+  if (currentMode === 'salon') {
+    const allSalonP = SALON_DATA.sessions.flatMap(s => s.prospects);
+    const contacted = allSalonP.filter(p => getStatus(p.nom) !== 'À contacter');
+    const rdvCount = allSalonP.filter(p => getStatus(p.nom) === 'RDV calé').length;
+    const relanceCount = allSalonP.filter(p => getStatus(p.nom).startsWith('Relance')).length;
+    const contacteCount = allSalonP.filter(p => getStatus(p.nom) === 'Contacté').length;
+
+    if (contacted.length > 0 || modeDone > 0) {
+      const pipeCard = document.createElement('div');
+      pipeCard.className = 'pipeline-overview-card animate-in';
+      pipeCard.innerHTML = `
+        <div class="pipeline-ov-header">
+          <div class="pipeline-ov-icon"><i class="fas fa-funnel-dollar"></i></div>
+          <div class="pipeline-ov-text">
+            <div class="pipeline-ov-title">Pipeline de suivi</div>
+            <div class="pipeline-ov-sub">${contacted.length} prospect${contacted.length > 1 ? 's' : ''} dans le pipeline</div>
+          </div>
+          <i class="fas fa-chevron-right pipeline-ov-arrow"></i>
+        </div>
+        <div class="pipeline-ov-chips">
+          ${rdvCount ? `<span class="pov-chip pov-rdv"><i class="fas fa-calendar-check"></i> ${rdvCount} RDV</span>` : ''}
+          ${relanceCount ? `<span class="pov-chip pov-relance"><i class="fas fa-redo"></i> ${relanceCount} relance${relanceCount > 1 ? 's' : ''}</span>` : ''}
+          ${contacteCount ? `<span class="pov-chip pov-contacte"><i class="fas fa-comment-dots"></i> ${contacteCount} contacté${contacteCount > 1 ? 's' : ''}</span>` : ''}
+        </div>
+      `;
+      pipeCard.addEventListener('click', () => { vibrate(); showPipeline(); });
+      list.appendChild(pipeCard);
+    }
+  }
+
   data.sessions.forEach((sess, i) => {
     const done = countSessionDone(sess);
     const total = sess.prospects.length;
@@ -717,6 +748,9 @@ function showProspect(p) {
         <i class="fas ${done ? 'fa-check-circle' : 'fa-circle'}"></i>
         ${done ? 'Prospecté ✓' : 'Marquer comme prospecté'}
       </button>
+      <button class="btn-action btn-export-lead" id="btn-export-lead">
+        <i class="fas fa-share-alt"></i> Exporter le lead
+      </button>
     </div>
   `;
 
@@ -728,6 +762,22 @@ function showProspect(p) {
     vibrate(30);
     setDone(p.nom, !isDone(p.nom));
     showProspect(p);
+  });
+
+  document.getElementById('btn-export-lead').addEventListener('click', () => {
+    vibrate(20);
+    exportLead(p);
+    const btn = document.getElementById('btn-export-lead');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copié !';
+    btn.style.background = 'var(--green)';
+    btn.style.color = 'white';
+    btn.style.borderColor = 'var(--green)';
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fas fa-share-alt"></i> Exporter le lead';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.borderColor = '';
+    }, 2000);
   });
 
   // Pipeline buttons (salon mode)
@@ -799,10 +849,175 @@ function showProspect(p) {
   });
 }
 
+// --- PIPELINE VIEW ---
+let pipelineFilter = 'all';
+
+function showPipeline(filter) {
+  if (filter !== undefined) pipelineFilter = filter;
+  currentSession = null;
+  currentView = 'session';
+  scrollTop();
+
+  document.getElementById('view-dashboard').classList.add('hidden');
+  document.getElementById('view-session').classList.remove('hidden');
+  document.getElementById('view-prospect').classList.add('hidden');
+  document.getElementById('btn-back').classList.remove('hidden');
+  document.getElementById('header-title').textContent = 'Pipeline';
+
+  const allP = SALON_DATA.sessions.flatMap(s => s.prospects);
+  // "all" = everything with any activity; otherwise filter by status
+  const actioned = allP.filter(p => {
+    const st = getStatus(p.nom);
+    if (pipelineFilter === 'all') return st !== 'À contacter' || isDone(p.nom);
+    return st === pipelineFilter;
+  });
+
+  document.getElementById('header-stats').textContent = actioned.length + ' prospect' + (actioned.length > 1 ? 's' : '');
+  document.getElementById('session-zone').textContent = 'Pipeline de suivi';
+  document.getElementById('session-meta').textContent = actioned.length + ' prospects dans le pipeline';
+
+  const mapLink = document.getElementById('session-map-link');
+  mapLink.style.display = 'none';
+
+  // Clear hall map
+  const mapContainer = document.getElementById('session-hall-map');
+  if (mapContainer) mapContainer.innerHTML = '';
+
+  // Build filter bar
+  const filterBar = document.getElementById('session-filter-bar') || (() => {
+    const bar = document.createElement('div');
+    bar.id = 'session-filter-bar';
+    bar.style.cssText = 'display:flex;gap:8px;padding:0 16px 12px;align-items:center;';
+    document.getElementById('view-session').insertBefore(bar, document.getElementById('prospects-list'));
+    return bar;
+  })();
+
+  // Count by status
+  const statusCounts = {};
+  allP.forEach(p => {
+    const st = getStatus(p.nom);
+    if (st !== 'À contacter' || isDone(p.nom)) {
+      const key = st === 'À contacter' ? 'Prospecté' : st;
+      statusCounts[key] = (statusCounts[key] || 0) + 1;
+    }
+  });
+
+  const filters = [
+    { key: 'all', label: 'Tout', icon: 'fa-th-list', color: 'var(--accent)' },
+    { key: 'Contacté', label: 'Contacté', icon: 'fa-comment-dots', color: 'var(--blue)' },
+    { key: 'Relance #1', label: 'R1', icon: 'fa-redo', color: 'var(--orange)' },
+    { key: 'Relance #2', label: 'R2', icon: 'fa-redo', color: 'var(--red)' },
+    { key: 'RDV calé', label: 'RDV', icon: 'fa-calendar-check', color: 'var(--green)' },
+    { key: 'Non définitif', label: 'Non', icon: 'fa-times-circle', color: 'var(--text-dim)' },
+    { key: 'Référence obtenue', label: 'Réf', icon: 'fa-handshake', color: 'var(--purple)' },
+  ];
+
+  filterBar.innerHTML = '<div class="pipeline-filter-chips">' + filters.map(f => {
+    const active = pipelineFilter === f.key;
+    const count = f.key === 'all' ? Object.values(statusCounts).reduce((a,b) => a+b, 0) : (statusCounts[f.key] || 0);
+    if (f.key !== 'all' && count === 0) return '';
+    return `<button class="pipe-chip ${active ? 'pipe-chip-active' : ''}" data-pipe="${f.key}" style="${active ? 'background:'+f.color+';color:white;border-color:'+f.color : ''}">
+      <i class="fas ${f.icon}"></i> ${f.label} <span class="pipe-chip-count">${count}</span>
+    </button>`;
+  }).join('') + '</div>';
+
+  filterBar.querySelectorAll('.pipe-chip').forEach(btn => {
+    btn.addEventListener('click', () => { vibrate(); showPipeline(btn.dataset.pipe); });
+  });
+
+  // Render prospect list
+  const list = document.getElementById('prospects-list');
+  list.innerHTML = '';
+
+  // Build a virtual session for walk navigation
+  const virtualSession = { id: 'PIPE', zone: 'Pipeline', villes: [], prospects: actioned };
+  currentSession = virtualSession;
+
+  actioned.forEach((p, i) => {
+    const done = isDone(p.nom);
+    const st = getStatus(p.nom);
+    const notesSnippet = (getNotesMap()[p.nom] || '').substring(0, 60);
+    // Find which session this prospect belongs to
+    const parentSess = SALON_DATA.sessions.find(s => s.prospects.some(pr => pr.nom === p.nom));
+    const sessLabel = parentSess ? parentSess.id : '';
+
+    const card = document.createElement('div');
+    card.className = 'prospect-card animate-in';
+    card.style.animationDelay = (i * 0.02) + 's';
+    if (done) card.style.opacity = '0.65';
+
+    const stColor = { 'Contacté': 'var(--blue)', 'Relance #1': 'var(--orange)', 'Relance #2': 'var(--red)', 'RDV calé': 'var(--green)', 'Non définitif': 'var(--text-dim)', 'Référence obtenue': 'var(--purple)' };
+
+    card.innerHTML = `
+      <div class="prospect-card-header" style="position:relative">
+        <div class="prospect-rank" style="background:${stColor[st] || 'var(--bg-elevated)'};color:${st !== 'À contacter' ? 'white' : ''};font-size:10px">
+          ${statusIcon(st)}
+        </div>
+        <div class="prospect-main">
+          <div class="prospect-name">${p.nom}</div>
+          <div class="prospect-niche">${p.dirigeant && p.dirigeant !== 'À confirmer' ? '<i class="fas fa-user-tie" style="font-size:9px;opacity:0.5"></i> ' + p.dirigeant + ' — ' : ''}${p.niche}</div>
+        </div>
+        ${sessLabel ? `<span class="stand-prominent" style="font-size:9px">${sessLabel}</span>` : ''}
+      </div>
+      <div class="prospect-tags">
+        <span class="tag" style="background:${stColor[st] ? stColor[st]+'15' : 'var(--bg-elevated)'};color:${stColor[st] || 'var(--text-muted)'}"><i class="fas ${st === 'RDV calé' ? 'fa-calendar-check' : st.startsWith('Relance') ? 'fa-redo' : 'fa-comment-dots'}"></i> ${st}</span>
+        ${p.stand_code ? `<span class="tag tag-ca">${p.stand_code}</span>` : ''}
+        ${p.interet ? interetBadge(p.interet) : ''}
+      </div>
+      ${notesSnippet ? `<div class="pipeline-notes-snippet"><i class="fas fa-sticky-note" style="opacity:0.3;margin-right:4px"></i>${notesSnippet}${notesSnippet.length >= 60 ? '...' : ''}</div>` : ''}
+    `;
+
+    card.addEventListener('click', () => { vibrate(); showProspect(p); });
+    list.appendChild(card);
+  });
+
+  if (actioned.length === 0) {
+    list.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--text-muted)"><i class="fas fa-inbox" style="font-size:28px;margin-bottom:12px;display:block;opacity:0.25"></i><p style="font-size:13px;font-weight:600">Aucun prospect dans cette catégorie</p></div>';
+  }
+}
+
+// --- EXPORT LEAD ---
+function exportLead(p) {
+  const st = getStatus(p.nom);
+  const notes = getNotesMap()[p.nom] || '';
+  const salonNotes = p.salon_notes || '';
+  const lines = [
+    '━━━ LEAD PROSPECTR ━━━',
+    '🏢 ' + p.nom,
+    p.dirigeant ? '👤 ' + p.dirigeant + (p.contact_role ? ' — ' + p.contact_role : '') : '',
+    p.niche ? '📌 ' + p.niche : '',
+    p.stand_code ? '📍 Stand ' + p.stand_code : '',
+    p.ca_precis || p.ca ? '💰 CA ' + (p.ca_precis || p.ca) : '',
+    p.site ? '🌐 ' + p.site : '',
+    '',
+    '📊 Statut : ' + st,
+    notes ? '📝 Notes : ' + notes : '',
+    salonNotes ? '🤝 Salon : ' + salonNotes : '',
+    p.angle_approche ? '🎯 Angle : ' + p.angle_approche : '',
+    '',
+    '— Exporté via ProspectR ' + new Date().toLocaleDateString('fr-FR'),
+  ].filter(l => l !== false && l !== undefined);
+
+  const text = lines.join('\n');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text);
+  } else {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+  return text;
+}
+
 // --- NAVIGATION ---
 function goBack() {
   if (currentView === 'prospect') {
-    if (currentSession) showSession(currentSession);
+    if (currentSession && currentSession.id === 'PIPE') { showPipeline(); }
+    else if (currentSession) showSession(currentSession);
     else { currentView = 'dashboard'; showDashboardView(); }
   } else if (currentView === 'session') {
     currentView = 'dashboard';

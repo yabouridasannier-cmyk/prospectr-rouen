@@ -1341,3 +1341,86 @@ async function init() {
 }
 
 init();
+
+// --- SYNC (Export / Import localStorage → multi-device) ---
+function exportSyncData() {
+  return JSON.stringify({
+    v: 1,
+    exported: new Date().toISOString(),
+    prospectr_done: getDoneMap(),
+    prospectr_notes: getNotesMap(),
+    prospectr_status: getStatusMap(),
+    prospectr_relances: getRelanceMap(),
+    prospectr_extra: getExtraMap()
+  });
+}
+
+function importSyncData(json) {
+  const data = JSON.parse(json);
+  if (!data || data.v !== 1) throw new Error('Format invalide — copie le JSON depuis Exporter.');
+  const keys = ['prospectr_done','prospectr_notes','prospectr_status','prospectr_relances','prospectr_extra'];
+  keys.forEach(k => {
+    if (data[k]) localStorage.setItem(k, JSON.stringify(data[k]));
+  });
+}
+
+function openSyncModal() {
+  const modal = document.getElementById('sync-modal');
+  modal.classList.remove('hidden');
+  // Populate export textarea fresh
+  document.getElementById('sync-export-text').value = exportSyncData();
+  document.getElementById('sync-copy-confirm').classList.add('hidden');
+  document.getElementById('sync-import-confirm').classList.add('hidden');
+  document.getElementById('sync-import-text').value = '';
+  // Reset to export tab
+  document.querySelectorAll('.sync-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.sync-tab[data-synctab="export"]').classList.add('active');
+  document.getElementById('sync-panel-export').classList.remove('hidden');
+  document.getElementById('sync-panel-import').classList.add('hidden');
+}
+
+function closeSyncModal() {
+  document.getElementById('sync-modal').classList.add('hidden');
+}
+
+document.getElementById('btn-sync').addEventListener('click', () => { vibrate(); openSyncModal(); });
+document.getElementById('sync-modal-close').addEventListener('click', closeSyncModal);
+document.getElementById('sync-backdrop').addEventListener('click', closeSyncModal);
+
+document.querySelectorAll('.sync-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.sync-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const which = tab.dataset.synctab;
+    document.getElementById('sync-panel-export').classList.toggle('hidden', which !== 'export');
+    document.getElementById('sync-panel-import').classList.toggle('hidden', which !== 'import');
+  });
+});
+
+document.getElementById('sync-copy-btn').addEventListener('click', () => {
+  const txt = document.getElementById('sync-export-text');
+  txt.select();
+  navigator.clipboard ? navigator.clipboard.writeText(txt.value) : document.execCommand('copy');
+  const confirm = document.getElementById('sync-copy-confirm');
+  confirm.classList.remove('hidden');
+  setTimeout(() => confirm.classList.add('hidden'), 2500);
+});
+
+document.getElementById('sync-import-btn').addEventListener('click', () => {
+  const raw = document.getElementById('sync-import-text').value.trim();
+  const confirmEl = document.getElementById('sync-import-confirm');
+  if (!raw) {
+    confirmEl.className = 'sync-confirm sync-error';
+    confirmEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> Rien à importer — colle le JSON d\'abord.';
+    return;
+  }
+  try {
+    importSyncData(raw);
+    confirmEl.className = 'sync-confirm sync-success';
+    confirmEl.innerHTML = '<i class="fas fa-check-circle"></i> Importé avec succès ! Ferme et recharge l\'app.';
+    setTimeout(() => { closeSyncModal(); location.reload(); }, 2000);
+  } catch (e) {
+    confirmEl.className = 'sync-confirm sync-error';
+    confirmEl.innerHTML = '<i class="fas fa-times-circle"></i> Erreur : ' + e.message;
+  }
+});

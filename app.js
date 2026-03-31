@@ -874,10 +874,41 @@ function showPipeline(filter) {
 
   document.getElementById('header-stats').textContent = actioned.length + ' prospect' + (actioned.length > 1 ? 's' : '');
   document.getElementById('session-zone').textContent = 'Pipeline de suivi';
-  document.getElementById('session-meta').textContent = actioned.length + ' prospects dans le pipeline';
+  // Show last sync info
+  const lastSync = localStorage.getItem('crm_last_sync');
+  const lastSyncLabel = lastSync
+    ? 'Sync CRM · ' + new Date(lastSync).toLocaleDateString('fr-FR', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' })
+    : 'Jamais synchronisé';
+  document.getElementById('session-meta').textContent = actioned.length + ' prospects · ' + lastSyncLabel;
 
   const mapLink = document.getElementById('session-map-link');
   mapLink.style.display = 'none';
+
+  // CRM sync button (reuse the map link slot)
+  mapLink.style.display = 'inline-flex';
+  mapLink.removeAttribute('href');
+  mapLink.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Sync CRM';
+  mapLink.style.background = 'rgba(124,58,237,0.08)';
+  mapLink.style.color = 'var(--purple)';
+  mapLink.style.borderColor = 'rgba(124,58,237,0.2)';
+  mapLink.onclick = async (e) => {
+    e.preventDefault();
+    mapLink.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sync...';
+    mapLink.style.opacity = '0.7';
+    const { synced, errors } = await syncToCRM();
+    mapLink.style.opacity = '';
+    mapLink.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Sync CRM';
+    showCrmToast(
+      errors > 0
+        ? `⚠️ ${synced} syncs, ${errors} erreur(s)`
+        : `✅ ${synced} prospect${synced > 1 ? 's' : ''} envoyé${synced > 1 ? 's' : ''} au CRM`,
+      errors > 0
+    );
+    // Refresh session-meta
+    const ls2 = localStorage.getItem('crm_last_sync');
+    if (ls2) document.getElementById('session-meta').textContent =
+      actioned.length + ' prospects · Sync CRM · ' + new Date(ls2).toLocaleDateString('fr-FR', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
+  };
 
   // Clear hall map
   const mapContainer = document.getElementById('session-hall-map');
@@ -1552,10 +1583,143 @@ async function init() {
     document.getElementById('splash').style.display = 'none';
     document.getElementById('main-app').classList.remove('hidden');
     renderDashboard();
+    // Auto-sync CRM at 18h if not done today
+    checkAutoSync();
   }, 2000);
 }
 
 init();
+
+// ─── CRM SYNC — Foire de Rouen → StructurA Lead ───────────────────────────
+const _CRM_URL  = 'https://eywnzgsvrsxzahoiwnml.supabase.co';
+const _CRM_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5d256Z3N2cnN4emFob2l3bm1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3NjA2MjIsImV4cCI6MjA4NjMzNjYyMn0.GvaduOjUosXVuMz785kThZQzO3PQW6jEX8DAvqmme-E';
+const _CRM_TOK  = '0fbaabc8-e42d-4e89-874d-7e016a4f080e';
+const _CRM_SRC  = 'FOIRE_ROUEN_2026';
+
+const _STAGE_MAP = {
+  'Contacté':           'A_RAPPELER',
+  'Relance #1':         'R1',
+  'Relance #2':         'A_RELANCER',
+  'RDV calé':           'A_RAPPELER',
+  'Non définitif':      'PROSPECT_IDENTIFIE',
+  'Référence obtenue':  'CLIENT',
+};
+const _ACTION_MAP = {
+  'Contacté':           'Rappeler / Prendre contact',
+  'Relance #1':         'Confirmer le R1',
+  'Relance #2':         'Relancer — 2ème tentative',
+  'RDV calé':           'Confirmer le RDV — Foire Rouen',
+  'Non définitif':      'Garder en veille',
+  'Référence obtenue':  'Demander une référence client',
+};
+
+async function syncToCRM() {
+  const allP   = SALON_DATA.sessions.flatMap(s => s.prospects);
+  const toSync = allP.filter(p => getStatus(p.nom) !== 'À contacter');
+  if (toSync.length === 0) return { synced: 0, errors: 0, skipped: 0 };
+
+  // Fetch existing CRM leads from foire to avoid duplicates
+  let existing = [];
+  try {
+    const r = await fetch(
+      `${_CRM_URL}/rest/v1/leads?select=id,display_title&token=eq.${_CRM_TOK}&source=eq.${_CRM_SRC}`,
+      { headers: { apikey: _CRM_KEY, Authorization: `Bearer ${_CRM_KEY}` } }
+    );
+    existing = await r.json();
+  } catch { existing = []; }
+
+  const existingMap = {};
+  if (Array.isArray(existing)) existing.forEach(l => { existingMap[l.display_title] = l.id; });
+
+  let synced = 0, errors = 0, skipped = 0;
+
+  for (const p of toSync) {
+    const st        = getStatus(p.nom);
+    const notes     = getNotesMap()[p.nom] || p.salon_notes || '';
+    const relances  = getRelances(p.nom);
+    const stage     = _STAGE_MAP[st] || 'A_RAPPELER';
+    const action    = _ACTION_MAP[st] || 'Rappeler / Prendre contact';
+    const r1info    = relances.relance_1 ? `${relances.relance_1.canal} — ${relances.relance_1.date}` : '';
+
+    const payload = {
+      token:        _CRM_TOK,
+      display_title: p.nom,
+      company_name: p.nom,
+      contact_name: (p.dirigeant && p.dirigeant !== 'À confirmer') ? p.dirigeant : '',
+      source:       _CRM_SRC,
+      stage,
+      next_action:  action,
+      notes:        notes,
+      notes_r1:     r1info,
+      nb_relances:  Object.keys(relances).length,
+      tags:         JSON.stringify(['foire-rouen-2026', `stand:${p.stand_code || p.stand || ''}`, `niche:${p.niche || ''}`]),
+    };
+
+    const existingId = existingMap[p.nom];
+    const url    = existingId
+      ? `${_CRM_URL}/rest/v1/leads?id=eq.${existingId}`
+      : `${_CRM_URL}/rest/v1/leads`;
+    const method = existingId ? 'PATCH' : 'POST';
+
+    try {
+      const resp = await fetch(url, {
+        method,
+        headers: {
+          apikey: _CRM_KEY,
+          Authorization: `Bearer ${_CRM_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify(payload),
+      });
+      if (resp.ok || resp.status === 201 || resp.status === 204) synced++;
+      else { errors++; console.error('[CRM sync]', resp.status, await resp.text()); }
+    } catch (e) { errors++; console.error('[CRM sync]', e); }
+  }
+
+  localStorage.setItem('crm_last_sync', new Date().toISOString());
+  return { synced, errors, skipped };
+}
+
+function showCrmToast(msg, isError) {
+  let toast = document.getElementById('crm-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'crm-toast';
+    toast.style.cssText = `
+      position:fixed;bottom:90px;left:50%;transform:translateX(-50%);
+      background:${isError ? '#dc2626' : '#18181b'};color:white;
+      padding:10px 18px;border-radius:20px;font-size:12px;font-weight:600;
+      z-index:9998;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,0.2);
+      animation:slideUp 0.2s ease;
+    `;
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.style.display = 'block';
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => { toast.style.display = 'none'; }, 3500);
+}
+
+function checkAutoSync() {
+  if (currentMode !== 'salon') return;
+  const lastSync   = localStorage.getItem('crm_last_sync');
+  const now        = new Date();
+  const todayStr   = now.toDateString();
+  const lastDay    = lastSync ? new Date(lastSync).toDateString() : null;
+  if (now.getHours() >= 18 && lastDay !== todayStr) {
+    syncToCRM().then(({ synced, errors }) => {
+      if (synced > 0 || errors > 0) {
+        showCrmToast(
+          errors > 0
+            ? `⚠️ CRM : ${synced} syncs, ${errors} erreur(s)`
+            : `✅ ${synced} prospect${synced > 1 ? 's' : ''} → CRM`,
+          errors > 0
+        );
+      }
+    });
+  }
+}
 
 // --- SYNC (Export / Import localStorage → multi-device) ---
 function exportSyncData() {

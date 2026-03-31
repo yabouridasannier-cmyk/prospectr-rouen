@@ -853,7 +853,7 @@ function showProspect(p) {
 let pipelineFilter = 'all';
 
 function showPipeline(filter) {
-  if (filter !== undefined) pipelineFilter = filter;
+  pipelineFilter = filter !== undefined ? filter : 'all';
   currentSession = null;
   currentView = 'session';
   scrollTop();
